@@ -58,7 +58,7 @@ class Database
      * @param $wherecond= Where clause, Default is NULL
      * Return an associative array of data of the result set
      */
-    public function _selectData($table, $columns = "*", $wherecond = null)
+    public function _selectData($table, $columns = "*", $whereClause = null)
     {
         /**
          * Check to see if the table exists
@@ -66,14 +66,16 @@ class Database
         if ($this->_isTableExist($table)) {
             //$sql="select * from $table";
 
-            $sql = "SELECT $columns FROM ". $table;
+            $sql = "SELECT $columns FROM $table";
+           // $sql .= " FROM $table";
             if (!empty($wherecond)) {
-                $sql .= " WHERE $wherecond ";
+                $sql .= " WHERE $whereClause ";
             }
             //$this->myQuery=$sql;
-            //die($sql);
+            //die($this->myQuery);
+            //$sql2="SELECT username,password FROM admin WHERE username = 'admin' AND password = '21232f297a57a5a743894a0e4a801fc3'";
 
-            $queryRes = $this->mysqli->query($sql);  
+            $queryRes = $this->mysqli->query($sql); 
             if ($queryRes) {
                 $this->resultArr = $queryRes->fetch_assoc();
             }

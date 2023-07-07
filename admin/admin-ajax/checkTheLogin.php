@@ -15,14 +15,13 @@ if (isset($_POST['_login'])) {
         $username = $_POST['_username'];
         $password = md5($_POST['_password']);
         $db = new Database();
-        $db->_selectData("admin", "username,password", "username = '$username' AND password = '$password'");
+        $db->_selectData('admin', 'username, name, admin_id', "username = '$username' AND password = '$password'");
         $resData = $db->_getTheResdata();
-        var_dump($resData);
+        if(!empty($resData)){
+            var_dump($resData);
+        }
+        
     }
 }
-$db = new Database();
-$db->_selectData("admin", "");
-$result = $db->_getTheResdata();
-echo json_encode($result);
 
 ?>
