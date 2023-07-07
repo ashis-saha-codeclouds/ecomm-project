@@ -15,10 +15,17 @@ if (isset($_POST['_login'])) {
         $username = $_POST['_username'];
         $password = md5($_POST['_password']);
         $db = new Database();
-        $db->_selectData('admin', 'username, name, admin_id', "username = '$username' AND password = '$password'");
+        $db->_selectData('admin', 'username, name, admin_id, role', "username = '$username' AND password = '$password'");
         $resData = $db->_getTheResdata();
         if(!empty($resData)){
-            echo json_encode(($resData));
+            session_start();
+            $_SESSION['admin_data']=json_encode($resData);
+            //echo json_encode($resData);
+            echo json_encode(array("success"=>true,"status"=>200));
+            exit();
+        }else{
+            echo json_encode(array("error"=>"false"));
+            exit();
         }
         
     }

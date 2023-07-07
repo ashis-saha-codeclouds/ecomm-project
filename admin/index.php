@@ -1,3 +1,19 @@
+<?php 
+session_start();
+if(isset($_SESSION['admin_data'])){
+    //var_dump($_SESSION['admin_data']);
+    $adminData=json_decode($_SESSION['admin_data'],true);
+    //var_dump($data);
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+    // echo $adminData['username'];
+    // echo $adminData['role'];
+    if(!empty($adminData['username'] && $adminData['role'])){
+        header("Location: dashboard.php");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +47,8 @@
                             <h3 class="panel-title text-center">Admin Login</h3>
                         </div>
                         <div class="panel-body" id="panel-body">
-                        <div class='alert alert-danger alert-log' style="display:none;">Please Enter your Username and Password</div>
+                        <div class='alert alert-danger' style="display:none;">Please Enter your Username and Password!</div>
+                        <div class='alert alert-success' style="display:none;">Logged In Successfully...</div>
                             <form role="form" method="post" id="admin-login-form" autocomplete="off">
                                 <fieldset>
                                     <div class="form-group">

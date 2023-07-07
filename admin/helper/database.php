@@ -68,7 +68,7 @@ class Database
 
             $sql = "SELECT $columns FROM $table";
            // $sql .= " FROM $table";
-            if (!empty($wherecond)) {
+            if (!empty($whereClause)) {
                 $sql .= " WHERE $whereClause ";
             }
             //$this->myQuery=$sql;
@@ -78,6 +78,10 @@ class Database
             $queryRes = $this->mysqli->query($sql); 
             if ($queryRes) {
                 $this->resultArr = $queryRes->fetch_assoc();
+                return true;
+            }else{
+                array_push($this->resultArr,$this->mysqli->error);
+                return false;
             }
         } else {
             array_push($this->resultArr, $this->mysqli->error);
@@ -108,6 +112,7 @@ class Database
         $this->resultArr = array();
         return $_resData;
     }
+
 
 
 }
