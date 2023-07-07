@@ -18,7 +18,7 @@ if (isset($_POST['_login'])) {
         $db->_selectData('admin', 'username, name, admin_id', "username = '$username' AND password = '$password'");
         $resData = $db->_getTheResdata();
         if(!empty($resData)){
-            var_dump($resData);
+            echo json_encode(($resData));
         }
         
     }
