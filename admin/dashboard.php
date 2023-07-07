@@ -1,130 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Admin | Admin Panel</title>
-
-        <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- MetisMenu CSS -->
-        <link href="css/metisMenu.min.css" rel="stylesheet">
-
-        <!-- Timeline CSS -->
-        <link href="css/timeline.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="css/startmin.css" rel="stylesheet">
-
-        <!-- Morris Charts CSS -->
-        <link href="css/morris.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-
-    <body>
-
+<?php include "header.php"; ?>
+<body>
         <div id="wrapper">
+            <!-- Start of the Navigation -->
+            <?php include "navbar.php" ?>
+            <!-- End of the Navigation -->
 
-            <!-- Navigation -->
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">Admin Dashboard</a>
-                </div>
-
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <ul class="nav navbar-right navbar-top-links">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <!-- <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                            </li> -->
-                            <li>
-                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- /.navbar-top-links -->
-            </nav>
-
-            <aside class="sidebar navbar-default" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-shopping-cart fa-fw"></i>Manage Product<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                            <li>
-                                    <a href="morris.html">All Products</a>
-                                </li>
-                                <li>
-                                    <a href="flot.html">Add Products</a>
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-cart-plus fa-fw"></i> Manage Order<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">All Orders</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i>Manage Users<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-
-                                <li>
-                                    <a href="morris.html">All Users</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Add Users</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-gear fa-fw"></i> Site Settings</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-power-off fa-fw"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-            <!-- /.sidebar -->
+            <!-- Start of the Navbar Sidebar -->
+            <?php include "sidebarmenu.php" ?>
+            <!-- End of the Navbar Sidebar -->
 
             <div id="page-wrapper">
                 <div class="container-fluid">
@@ -350,22 +233,7 @@
         </div>
         <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="js/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="js/metisMenu.min.js"></script>
-
-        <!-- Morris Charts JavaScript -->
-        <script src="js/raphael.min.js"></script>
-        <script src="js/morris.min.js"></script>
-        <script src="js/morris-data.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="js/startmin.js"></script>
+       <?php include('footer.php') ?>
 
     </body>
 
