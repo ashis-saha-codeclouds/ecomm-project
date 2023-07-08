@@ -16,10 +16,10 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Admin Profile</a>
+                                <a href="admin-profile.php"><i class="fa fa-user fa-fw"></i> Admin Profile</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-gear fa-fw"></i> Change Password</a>
+                                <a href="change-password.php"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                             </li>
                             <li class="divider"></li>
                             <li>
