@@ -22,7 +22,7 @@ class Database
     /**
      * $mysqli for MySqli object
      */
-    private $mysqli;
+    private $mysqli="";
     /**
      * Declared for the database connection status/res. Default values set as False
      */
@@ -45,13 +45,14 @@ class Database
              */
             try {
                 $this->mysqli = new mysqli($this->dbhost, $this->dbuser, $this->dbpassword, $this->dbname);
-                $this->conn=true;
                 } catch (Exception $e) {
                 echo 'Exception Message: ' . $e->getMessage();
+                return false;
+                
             }
         } else {
-            $this->conn=true;
             echo "Database Connected!";
+            return true;
         }
     }
     /**
