@@ -106,6 +106,10 @@ class Database
         }
     }
 
+    /**
+     * _getTheResdata function to return the result to the respective function call.
+     * Return Type is array.
+     */
     public function _getTheResdata()
     {
         $_resData = $this->resultArr;
