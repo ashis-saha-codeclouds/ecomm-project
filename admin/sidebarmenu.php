@@ -14,16 +14,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="dashboard.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-shopping-cart fa-fw"></i>Manage Product<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             <li>
-                                    <a href="morris.html">All Products</a>
+                                    <a href="products.php">All Products</a>
                                 </li>
                                 <li>
-                                    <a href="flot.html">Add Products</a>
+                                    <a href="add-product.php">Add Products</a>
                                 </li>
                                 
                             </ul>
@@ -33,7 +33,7 @@
                             <a href="#"><i class="fa fa-cart-plus fa-fw"></i> Manage Order<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">All Orders</a>
+                                    <a href="all-orders.php">All Orders</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -43,19 +43,19 @@
                             <ul class="nav nav-second-level">
 
                                 <li>
-                                    <a href="morris.html">All Users</a>
+                                    <a href="all-users.php">All Users</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Add Users</a>
+                                    <a href="add-users.php">Add Users</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-gear fa-fw"></i> Site Settings</a>
+                            <a href="site-settings.php"><i class="fa fa-gear fa-fw"></i> Site Settings</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-power-off fa-fw"></i> Log Out</a>
+                            <a href="logout.php"><i class="fa fa-power-off fa-fw"></i> Log Out</a>
                         </li>
                     </ul>
                 </div>

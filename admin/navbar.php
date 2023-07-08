@@ -19,11 +19,11 @@
                                 <a href="#"><i class="fa fa-user fa-fw"></i> Admin Profile</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>

@@ -45,10 +45,12 @@ class Database
              */
             try {
                 $this->mysqli = new mysqli($this->dbhost, $this->dbuser, $this->dbpassword, $this->dbname);
-            } catch (Exception $e) {
+                $this->conn=true;
+                } catch (Exception $e) {
                 echo 'Exception Message: ' . $e->getMessage();
             }
         } else {
+            $this->conn=true;
             echo "Database Connected!";
         }
     }
@@ -115,6 +117,17 @@ class Database
         $_resData = $this->resultArr;
         $this->resultArr = array();
         return $_resData;
+    }
+
+    public function  __destruct(){
+        if($this->conn){
+            if($this->mysqli->close()){
+                $this->conn = false;
+					return true;
+            }else{
+                return false;
+            }
+        }
     }
 
 
