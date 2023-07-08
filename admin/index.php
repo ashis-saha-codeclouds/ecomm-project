@@ -1,5 +1,6 @@
 <?php 
 session_start();
+//session_destroy();
 if(isset($_SESSION['admin_data'])){
     //var_dump($_SESSION['admin_data']);
     $adminData=json_decode($_SESSION['admin_data'],true);

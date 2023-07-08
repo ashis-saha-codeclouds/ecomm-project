@@ -1,6 +1,15 @@
+<?php
+if(!session_id()){
+    session_start();
+    var_dump($_SESSION['admin_data']);
+    die(session_id());
+}
+if(!isset($_SESSION['admin_data']) && empty($_SESSION['admin_data'])){
+    header("location:/admin");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin | Admin Panel</title>
+        <title>Admin Dashboard | Admin Panel</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
