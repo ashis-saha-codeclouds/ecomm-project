@@ -4,7 +4,7 @@ if(!session_id()){
     // var_dump($_SESSION['admin_data']);
     // die(session_id());
 }
-if(!isset($_SESSION['admin_data']) && empty($_SESSION['admin_data'])){
+if(!isset($_SESSION['admin_data']) || empty($_SESSION['admin_data'])){
     header("location:index.php");
 }
 ?>
