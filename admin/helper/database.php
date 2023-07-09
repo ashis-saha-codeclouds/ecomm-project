@@ -111,7 +111,7 @@ class Database
 
     /**
      * _getTheResdata function to return the result to the respective function call.
-     * Return Type is array.
+     * Return Type is an array.
      */
     public function _getTheResdata()
     {
@@ -119,6 +119,25 @@ class Database
         $this->resultArr = array();
         return $_resData;
     }
+
+    /**
+     * _escapeTheStringData function is used to prevent the SQL injection
+     * @param string $data is the input string
+     * Return type is a string
+     */
+
+    public function _escapeTheStringData($data){
+        $data=trim($data);
+        $data=stripslashes($data);
+        $data=htmlspecialchars($data);
+        $data=$this->mysqli->real_escape_string($data);
+        return $data;
+    }
+
+    /**
+     * Closing the existing MySQL connection.
+     * Return type is boolean.
+     */
 
     public function  __destruct(){
         if($this->conn){

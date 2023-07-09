@@ -17,7 +17,7 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-                    <div class="row">
+                    <div class="row" id="msgrow">
                         <div class="col-lg-6">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -26,7 +26,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-6">
-                                            <form role="form">
+                                            <form id="resetThePassword" role="form" method="post">
                                             <div class="form-group">
                                                     <label>Enter Old Password</label>
                                                     <input class="form-control" name="oldPassword" id="oldPassword" placeholder="XXXXXX" type="password">
@@ -62,6 +62,10 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
+
+<!-- Custom JavaScript -->
+<script src="js/custom/custom.js"></script>
+
 
     </body>
 

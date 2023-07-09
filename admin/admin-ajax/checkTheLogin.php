@@ -31,4 +31,23 @@ if (isset($_POST['_login'])) {
     }
 }
 
+if(isset($_POST['updateThepassword'])){
+    $oldPassword=trim($_POST['oldPassword']);
+
+   if(!isset($_POST['oldPassword']) || empty($_POST['oldPassword'])){
+    echo json_encode(array("error"=>"Old Password is required!"));
+    exit();
+   }else if(!isset($_POST['newPassword']) || empty($_POST['newPassword'])){
+    echo json_encode(array("error"=>"New Password is required!"));
+    exit();
+   }else{
+    $db = new Database();
+    $oldpassword=md5($db->_escapeTheStringData($_POST['oldPassword']));
+    $newpassword=md5($db->_escapeTheStringData($_POST['newPassword']));
+    echo json_encode(array("success"=>true,"status"=>200));
+    exit();
+    
+   }
+}
+
 ?>
