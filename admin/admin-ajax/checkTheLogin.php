@@ -29,7 +29,7 @@ if (isset($_POST['_login'])) {
         }
         
     }
-}
+} 
 
 if(isset($_POST['updateThepassword'])){
     $oldPassword=trim($_POST['oldPassword']);

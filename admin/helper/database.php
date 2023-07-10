@@ -127,7 +127,7 @@ class Database
      */
 
     public function _escapeTheStringData($data){
-        $data=trim($data);
+        $data=trim($data); 
         $data=stripslashes($data);
         $data=htmlspecialchars($data);
         $data=$this->mysqli->real_escape_string($data);
