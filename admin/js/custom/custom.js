@@ -60,7 +60,7 @@ $(document).ready(function () {
       );
       hideTheAlertMsg();
       return false;
-    }
+    } 
     try {
       $.ajax({
         url: "./admin-ajax/checkTheLogin.php",
