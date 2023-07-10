@@ -91,6 +91,46 @@ class Database
             return false;
         }
     }
+
+
+    public function _updateData($table, $parmas=array(), $whereClause=null){
+        //sql="UPDATE `admin` SET `email_id` = 'ashish.saha@codeclouds.inn' WHERE `admin`.`admin_id` = 1;"
+
+        if($this->_isTableExist(($table))){
+            $updateCol=array();
+            $sql="UPDATE $table SET";
+            if(!empty($parmas)){
+            foreach($parmas as $key=>$value){
+                //echo $key."=".$value;
+                array_push($updateCol,"`$key`='$value'");
+            }
+            // echo "<pre>";
+            // print_r($updateCol);
+            // echo '</pre>';
+            $setCol= implode(",",$updateCol);
+            $sql .= " $setCol ";
+        }
+        //$sql2="UPDATE $table SET " . implode(',',$updateCol);
+        if(!empty($whereClause)){
+            $sql .=" WHERE $whereClause";
+        }
+        // echo $sql;
+        // die();
+            $queryRes=$this->mysqli->query($sql);
+            if($queryRes){
+                array_push($this->resultArr,$this->mysqli->affected_rows);
+                return true;
+            }else{
+                array_push($this->resultArr,$this->mysqli-error);
+                return false;
+            }
+        }else{
+            array_push($this->resultArr,$this->mysqli->error);
+            return false;
+        }
+
+    }
+
     /**
      * _isTableExist function to check the table existance in the Database.
      * @param $table is the Table name that need to check in the database.

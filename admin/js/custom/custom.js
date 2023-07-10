@@ -54,7 +54,7 @@ $(document).ready(function () {
       );
       hideTheAlertMsg();
       return false;
-    } else if (oldPass.length > 8 || newPass.length > 8) {
+    } else if (oldPass.length < 8 || newPass.length < 8) {
       $("#msgrow").prepend(
         '<div class="alert alert-danger">Password length should be 8 character long.</div>'
       );
@@ -72,6 +72,16 @@ $(document).ready(function () {
           $(".alert").hide();
           let _resData = JSON.parse(_responseData);
           console.log(_resData);
+          if(_resData.hasOwnProperty('success')){
+            $("#msgrow").prepend(
+              '<div class="alert alert-success">Password updated successfully. You will be logged out in few moments...</div>'
+            );
+            setTimeout(function(){
+              window.location.href="logout.php";
+            },10000);
+          }else if(_resData.hasOwnProperty('error')){
+            console.log(error);
+          }
         },
       });
     } catch (error) {
