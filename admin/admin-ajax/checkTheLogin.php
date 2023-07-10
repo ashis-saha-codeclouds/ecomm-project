@@ -12,9 +12,9 @@ if (isset($_POST['_login'])) {
     } elseif (!isset($_POST['_password']) || empty($_POST['_password'])) {
         json_encode(array("error" => "Password is Empty!"));
     } else {
-        $username = $_POST['_username'];
-        $password = md5($_POST['_password']);
         $db = new Database();
+        $username = $db->_escapeTheStringData($_POST['_username']);
+        $password = md5($db->_escapeTheStringData($_POST['_password']));
         $db->_selectData('admin', 'username, name, admin_id, role', "username = '$username' AND password = '$password'");
         $resData = $db->_getTheResdata();
         if(!empty($resData)){
@@ -32,8 +32,6 @@ if (isset($_POST['_login'])) {
 } 
 
 if(isset($_POST['updateThepassword'])){
-    $oldPassword=trim($_POST['oldPassword']);
-
    if(!isset($_POST['oldPassword']) || empty($_POST['oldPassword'])){
     echo json_encode(array("error"=>"Old Password is required!"));
     exit();

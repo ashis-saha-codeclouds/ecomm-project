@@ -121,9 +121,10 @@ class Database
     }
 
     /**
-     * _escapeTheStringData function is used to prevent the SQL injection
-     * @param string $data is the input string
-     * Return type is a string
+     * _escapeTheStringData function is used to prevent the SQL injection.
+     * Implemented the Trim|StripSlashes|HtmlSpecialChars|Mysql Real_Escape_String Functions.
+     * @param string $data is the input string.
+     * Return type is a string.
      */
 
     public function _escapeTheStringData($data){
