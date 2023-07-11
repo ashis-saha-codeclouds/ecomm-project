@@ -7,6 +7,7 @@ if(!session_id()){
     // echo "<pre>";
     // print_r($_SESSION['admin_data']);
     // echo '</pre>';
+    // die();
     
 }
 
