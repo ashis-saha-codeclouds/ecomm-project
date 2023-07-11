@@ -11,7 +11,7 @@ $(document).ready(function () {
     } else {
       try {
         $.ajax({
-          url: "./admin-ajax/checkTheLogin.php",
+          url: "./admin-ajax/adminAjaxFun.php",
           type: "POST",
           data: { _login: 1, _username: username, _password: password },
           success: function (_responseData) {
@@ -63,7 +63,7 @@ $(document).ready(function () {
     } 
     try {
       $.ajax({
-        url: "./admin-ajax/checkTheLogin.php",
+        url: "./admin-ajax/adminAjaxFun.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -75,12 +75,14 @@ $(document).ready(function () {
           if(_resData.hasOwnProperty('success')){
             $("#msgrow").prepend(
               '<div class="alert alert-success">Password updated successfully. You will be logged out in few moments...</div>'
-            );
-            setTimeout(function(){
-              window.location.href="logout.php";
+              );
+              hideTheAlertMsg();
+              setTimeout(function(){
+                window.location="logout.php"
             },10000);
           }else if(_resData.hasOwnProperty('error')){
-            console.log(error);
+            $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
+            hideTheAlertMsg();
           }
         },
       });
@@ -92,6 +94,6 @@ $(document).ready(function () {
   function hideTheAlertMsg(){
     setTimeout(function () {
         $(".alert").hide();
-      }, 2000);
+      }, 4000);
   }
 });

@@ -111,21 +111,30 @@ class Database
             $sql .= " $setCol ";
         }
         //$sql2="UPDATE $table SET " . implode(',',$updateCol);
-        if(!empty($whereClause)){
+        if($whereClause!=null){
             $sql .=" WHERE $whereClause";
         }
         // echo $sql;
         // die();
             $queryRes=$this->mysqli->query($sql);
-            if($queryRes){
-                array_push($this->resultArr,$this->mysqli->affected_rows);
+            $affectedRows=$this->mysqli->affected_rows;
+            //echo $affectedRows;
+            // if($affectedRows){
+            //     echo "success!";
+            // }else{
+            //     echo "Fail";
+            // }
+            // die();
+            if($affectedRows){
+                $this->resultArr=array("affectedrows"=>$affectedRows,'success'=>true);
                 return true;
             }else{
-                array_push($this->resultArr,$this->mysqli-error);
+                $error=$this->mysqli->error?$this->mysqli->error:true;
+                $this->resultArr=array("error"=>$error,"affectedrows"=>$affectedRows);
                 return false;
             }
         }else{
-            array_push($this->resultArr,$this->mysqli->error);
+            $this->resultArr=array("error"=>$this->mysqli->error);
             return false;
         }
 

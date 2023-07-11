@@ -33,10 +33,13 @@ if (isset($_POST['_login'])) {
 
 if (isset($_POST['updateThepassword'])) {
     if (!isset($_POST['oldPassword']) || empty($_POST['oldPassword'])) {
-        echo json_encode(array("error" => "Old Password is required!"));
+        echo json_encode(array("errorMsg" => "Old Password is required!","error" => "false"));
         exit();
     } else if (!isset($_POST['newPassword']) || empty($_POST['newPassword'])) {
-        echo json_encode(array("error" => "New Password is required!"));
+        echo json_encode(array("errorMsg" => "New Password is required!","error" => "false"));
+        exit();
+    } else if($_POST['newPassword'] == $_POST['oldPassword']){
+        echo json_encode(array("errorMsg" => "New Password is same as the old password!","error" => "false"));
         exit();
     } else {
         $db = new Database();
@@ -45,11 +48,19 @@ if (isset($_POST['updateThepassword'])) {
         $emailid = $db->_escapeTheStringData($_POST['email']);
         $db->_updateData('admin', array('password' => $newpassword), "email_id='$emailid' AND password='$oldpassword'");
         $resData = $db->_getTheResdata();
-        if (!empty($resData)) {
+        // echo "<pre>";
+        // print_r($resData);
+        // echo "</pre>";
+        //var_dump($resData);
+        //echo !is_null($resData);
+        if (array_key_exists("success",$resData) && !is_null($resData['affectedrows'])) {
             echo json_encode(array("success" => true, "status" => 200));
             exit();
-        } else {
-            echo json_encode(array("error" => false));
+        } else if(array_key_exists("error",$resData) && ($resData['affectedrows']<1)) {
+            echo json_encode(array("error" => "false","affected_rows"=>$resData['affectedrows'],"errorMsg"=>"Given Old Password doesn't match!"));
+            exit();
+        }else{
+            echo json_encode(array("error" => 'false'));
             exit();
         }
 
