@@ -60,7 +60,7 @@ $(document).ready(function () {
       );
       hideTheAlertMsg();
       return false;
-    } 
+    }else{ 
     try {
       $.ajax({
         url: "./admin-ajax/adminAjaxFun.php",
@@ -79,17 +79,60 @@ $(document).ready(function () {
               hideTheAlertMsg();
               setTimeout(function(){
                 window.location="logout.php"
-            },10000);
+            },50000);
           }else if(_resData.hasOwnProperty('error')){
             $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
             hideTheAlertMsg();
           }
-        },
+        }
       });
     } catch (error) {
       console.log(error);
     }
+  }
   });
+
+  $("#adminProfile").submit(function (e) {
+    e.preventDefault();
+    $(".alert").hide();
+    let formData = new FormData(this);
+    formData.append("updateTheProfile", 1);
+    let name=formData.get('name');
+    let email=formData.get('email');
+    if (name == "" || email == "") {
+      $("#msgrow").prepend(
+        '<div class="alert alert-danger">All the fields are required.</div>'
+      );
+      hideTheAlertMsg();
+      return false;
+    } else{
+      try{
+        $.ajax({
+          url:"./admin-ajax/adminAjaxFun.php",
+          type: "POST",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (_responseData) {
+          $(".alert").hide();
+          let _resData = JSON.parse(_responseData);
+          console.log(_resData);
+          if(_resData.hasOwnProperty('success')){
+            $("#msgrow").prepend(
+              '<div class="alert alert-success">Profile Updated Successfulll</div>'
+              );
+              hideTheAlertMsg();
+          }else if(_resData.hasOwnProperty('error')){
+            $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
+            hideTheAlertMsg();
+          }
+        }
+        })
+      }catch(error){
+        console.log(error);
+      }
+    }
+  })
 
   function hideTheAlertMsg(){
     setTimeout(function () {

@@ -68,4 +68,25 @@ if (isset($_POST['updateThepassword'])) {
     }
 }
 
+if (isset($_POST['updateTheProfile'])) {
+    // echo "<pre>";
+    //     print_r($_POST);
+    //     echo "</pre>";
+    if (!isset($_POST['name']) || empty($_POST['name'])) {
+        echo json_encode(array("errorMsg" => "Name is required!","error" => "false"));
+        exit();
+    } else if (!isset($_POST['email']) || empty($_POST['email'])) {
+        echo json_encode(array("errorMsg" => "Email is required!","error" => "false"));
+        exit();
+    }else{
+        $db = new Database();
+        $name=$db->_escapeTheStringData($_POST['name']);
+        $email=$db->_escapeTheStringData($_POST['email']);
+        $db->_updateData('admin', array('name' => $name, 'email_id'=>$email), "email_id='$emailid'");
+        $resData = $db->_getTheResdata();
+
+    }
+    
+}
+
 ?>

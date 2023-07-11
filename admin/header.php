@@ -7,20 +7,20 @@ if(!session_id()){
     // echo "<pre>";
     // print_r($_SESSION['admin_data']);
     // echo '</pre>';
-    // die();
     
 }
 
-//  echo "<pre>";
-//  print_r($sesnData);
-//  echo '</pre>';
-//  echo $sesnData['email_id'];
-// die();
+
 if(!isset($_SESSION['admin_data']) || empty($_SESSION['admin_data'])){
     header("location:index.php");
 }else{
     $sesnData=json_decode($_SESSION['admin_data'],true);
 }
+//  echo "<pre>";
+//  print_r($sesnData);
+//  echo '</pre>';
+//  echo $sesnData['email_id'];
+// die();
 ?>
 <!DOCTYPE html>
 <html lang="en">

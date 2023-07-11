@@ -21,19 +21,20 @@
                         <div class="col-lg-6">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Update Admin Profile
+                                    Update Profile
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-6">
-                                            <form role="form">
+                                            <form role="form" id="adminProfile" method="post">
                                             <div class="form-group">
-                                                    <label>Enter Old Password</label>
-                                                    <input class="form-control" name="oldPassword" id="oldPassword" placeholder="XXXXXX" type="password">
+                                                    <label>Name</label>
+                                                    <input class="form-control" name="name" id="name" placeholder="" value="<?php echo $sesnData['name'] ?>" type="text">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Enter New Password</label>
-                                                    <input class="form-control" name="newPassword" id="newPassword" placeholder="XXXXXX" type="password">
+                                                    <input class="form-control" name="email" id="email" placeholder="" value="<?php echo $sesnData['email_id'] ?> " type="text">
+                                                    <input type="hidden" name="role" value="<?php echo $sesnData['admin_id'] ?>" >
                                                 </div>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
                                             </form>
@@ -62,6 +63,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
+
+<!-- Custom JavaScript -->
+<script src="js/custom/custom.js"></script>
 
     </body>
 
