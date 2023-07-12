@@ -82,9 +82,28 @@ if (isset($_POST['updateTheProfile'])) {
         $db = new Database();
         $name=$db->_escapeTheStringData($_POST['name']);
         $email=$db->_escapeTheStringData($_POST['email']);
-        $db->_updateData('admin', array('name' => $name, 'email_id'=>$email), "email_id='$emailid'");
+        $admin_id=$db->_escapeTheStringData($_POST['role']);
+        $db->_updateData('admin', array('name' => $name, 'email_id'=>$email), "admin_id='$admin_id'");
         $resData = $db->_getTheResdata();
-
+        if (array_key_exists("success",$resData) && !is_null($resData['affectedrows'])) {
+                session_start();
+                $db->_selectData('admin', 'username, name, admin_id, role, email_id', "admin_id='$admin_id'");
+                $resAdminData = $db->_getTheResdata();
+                if (!empty($resAdminData)) {
+                    if(!session_id()){
+                        session_start();
+                    }
+                    $_SESSION['admin_data'] = json_encode($resAdminData);
+                }
+            echo json_encode(array("success" => true, "status" => 200));
+            exit();
+        } else if(array_key_exists("error",$resData) && ($resData['affectedrows']<1)) {
+            echo json_encode(array("error" => "false","affected_rows"=>$resData['affectedrows'],"errorMsg"=>"It seems that current and Updated are same!"));
+            exit();
+        }else{
+            echo json_encode(array("error" => 'false'));
+            exit();
+        }
     }
     
 }

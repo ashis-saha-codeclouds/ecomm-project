@@ -17,7 +17,7 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-                    <div class="row">
+                    <div class="row" id="msgrow">
                         <div class="col-lg-6">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -29,11 +29,11 @@
                                             <form role="form" id="adminProfile" method="post">
                                             <div class="form-group">
                                                     <label>Name</label>
-                                                    <input class="form-control" name="name" id="name" placeholder="" value="<?php echo $sesnData['name'] ?>" type="text">
+                                                    <input class="form-control" name="name" id="name" placeholder="" value="<?php echo $sesnData['name']?>" type="text">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Enter New Password</label>
-                                                    <input class="form-control" name="email" id="email" placeholder="" value="<?php echo $sesnData['email_id'] ?> " type="text">
+                                                    <input class="form-control" name="email" id="email" placeholder="" value="<?php echo $sesnData['email_id']?> " type="text">
                                                     <input type="hidden" name="role" value="<?php echo $sesnData['admin_id'] ?>" >
                                                 </div>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>

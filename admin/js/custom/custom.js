@@ -95,6 +95,7 @@ $(document).ready(function () {
   $("#adminProfile").submit(function (e) {
     e.preventDefault();
     $(".alert").hide();
+    let validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     let formData = new FormData(this);
     formData.append("updateTheProfile", 1);
     let name=formData.get('name');
@@ -105,7 +106,7 @@ $(document).ready(function () {
       );
       hideTheAlertMsg();
       return false;
-    } else{
+      }else{
       try{
         $.ajax({
           url:"./admin-ajax/adminAjaxFun.php",
@@ -138,5 +139,15 @@ $(document).ready(function () {
     setTimeout(function () {
         $(".alert").hide();
       }, 4000);
+  }
+
+  function validateTheEmail(emailid){
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(emailid.match(validRegex)){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 });
