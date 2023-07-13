@@ -135,6 +135,12 @@ $(document).ready(function () {
     }
   })
 
+  $("#sitesettings").submit(function (e) {
+    e.preventDefault();
+    $(".alert").hide();
+    console.log('sitesettings');
+  })
+
   function hideTheAlertMsg(){
     setTimeout(function () {
         $(".alert").hide();
