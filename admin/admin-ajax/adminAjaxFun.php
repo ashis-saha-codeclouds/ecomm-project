@@ -108,4 +108,10 @@ if (isset($_POST['updateTheProfile'])) {
     
 }
 
+if (isset($_POST['updateTheProfile'])) {
+    echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+}
+
 ?>

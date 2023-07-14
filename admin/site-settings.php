@@ -25,22 +25,22 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                    <form role="form" id="sitesettings" method="post" enctype="multipart/form-data">
+                                    <form role="form" id="siteSettings" method="post" enctype="multipart/form-data">
                                     <div class="col-lg-6">
                                             <div class="form-group">
-                                                    <label>Site Name</label>
-                                                    <input class="form-control" name="site_name" id="site_name" placeholder="" value="<?php echo $sesnData['site_name']?>" type="text">
+                                                    <label>Site Name*</label>
+                                                    <input class="form-control" name="site_name" id="site_name" value="<?php echo $sesnData['site_name']?>" type="text">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Site Title</label>
-                                                    <input class="form-control" name="site_title" id="site_title" placeholder="" value="<?php echo $sesnData['site_title']?> " type="text">
+                                                    <label>Site Title*</label>
+                                                    <input class="form-control" name="site_title" id="site_title" value="<?php echo $sesnData['site_title']?> " type="text">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Site Description</label>
-                                                    <input class="form-control" name="site_desc" id="site_desc" placeholder="" value="<?php echo $sesnData['site_desc']?>" type="text">
+                                                    <label>Site Description*</label>
+                                                    <input class="form-control" name="site_desc" id="site_desc" value="<?php echo $sesnData['site_desc']?>" type="text">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Site Address</label>
+                                                    <label>Site Address*</label>
                                                     <textarea class="form-control" name="site_address" id="site_address"><?php echo $sesnData['site_desc']?></textarea>
                                                 </div>  
                                     </div>
@@ -48,14 +48,15 @@
                                     <div class="form-group">
                                                     <label>Site Logo</label>
                                                     <input class="form-control" name="site_logo" id="site_logo" type="file">
+                                                    <div style="margin: 2px;"><img id="image" src="../images/no-image.jpg" alt="" width="100px"/></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Site Email</label>
-                                                    <input class="form-control" name="site_email" id="site_email" placeholder="" value="<?php echo $sesnData['site_email']?> " type="text">
+                                                    <label>Site Email*</label>
+                                                    <input class="form-control" name="site_email" id="site_email" value="<?php echo $sesnData['site_email']?> " type="text">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Site Contact No</label>
-                                                    <input class="form-control" name="site_contact" id="site_contact" placeholder="" value="<?php echo $sesnData['site_contact']?> " type="text">
+                                                    <label>Site Contact No*</label>
+                                                    <input class="form-control" name="site_contact" id="site_contact" value="<?php echo $sesnData['site_contact']?> " type="text">
                                                 </div>
                                                 
                                     </div>

@@ -1,15 +1,8 @@
 <?php
+require_once("helper/config.php");
 if(!session_id()){
     session_start();
-    //var_dump(json_decode($_SESSION['admin_data']));
-
-    // die(session_id());
-    // echo "<pre>";
-    // print_r($_SESSION['admin_data']);
-    // echo '</pre>';
-    
 }
-
 
 if(!isset($_SESSION['admin_data']) || empty($_SESSION['admin_data'])){
     header("location:index.php");
