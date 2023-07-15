@@ -135,59 +135,98 @@ $(document).ready(function () {
     }
   })
 
-  $("#siteSettings").submit(function (e) {
-    e.preventDefault();
-    $(".alert").hide();
-    let formData = new FormData(this);
-    formData.append("siteSettings", 1);
-    let siteName=formData.get("site_name");
-    let siteTitle=formData.get("site_title");
-    let siteDesc=formData.get("site_desc");
-    let siteAddress=formData.get("site_address");
-    let siteEmail=formData.get("site_email");
-    let siteContact=formData.get("site_contact");
-    if(siteName ==""){
-      $("#msgrow").prepend('<div class="alert alert-danger">Site name is required.</div>');
-    }else if(siteTitle==""){
-      $("#msgrow").prepend('<div class="alert alert-danger">Site Title is required.</div>');
-    }else if(siteDesc==""){
-      $("#msgrow").prepend('<div class="alert alert-danger">Site Description is required.</div>');
-    }else if(siteAddress==""){
-      $("#msgrow").prepend('<div class="alert alert-danger">Site Address is required.</div>');
-    }else if(siteEmail==""){
-      $("#msgrow").prepend('<div class="alert alert-danger">Site Email Address is required.</div>');
-    }else if(siteContact==""){
-      $("#msgrow").prepend('<div class="alert alert-danger">Site Contact No. is required.</div>');
-    }else{
-      try{
+  $("#siteSettings").validate(
+    {
+      rules:{
+        site_name:"required",
+        site_title:"required",
+        site_desc:"required",
+        site_address:"required",
+        site_email:{
+          required:true,
+          email:true
+        },
+        site_contact:"required",
+      },
+      messages:{
+        site_name:"Please enter your Site Name",
+        site_title:"Please enter your Site Title",
+        site_desc:"Please enter your Site Description",
+        site_address:"Please enter your Site Address",
+        site_email:"Please enter a valid email address",
+        site_contact:"Please enter your Site Contact Details",
+      },
+      submitHandler: function (form) {
+        var formData = $(form).serialize() + '&siteSettings=1';
+        console.log(formData);
+        //return false;
         $.ajax({
-          url:"./admin-ajax/adminAjaxFun.php",
-          type: "POST",
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function (_responseData) {
-          $(".alert").hide();
-          let _resData = JSON.parse(_responseData);
-          console.log(_resData);
-          // if(_resData.hasOwnProperty('success')){
-          //   $("#msgrow").prepend(
-          //     '<div class="alert alert-success">Profile Updated Successfulll</div>'
-          //     );
-          //     hideTheAlertMsg();
-          // }else if(_resData.hasOwnProperty('error')){
-          //   $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
-          //   hideTheAlertMsg();
-          // }
-        }
-        })
-      }catch(error){
-        console.log(error);
-      }
+            type: "POST",
+            url: "./admin-ajax/adminAjaxFun.php",
+            data: formData,
+            success: function (_responseData) {
+              console.log(_responseData);
+              // let _resData = JSON.parse(_responseData);
+              // console.log(_resData);
+            }
+        });
+        return false; // required to block normal submit since you used ajax
     }
+    });
+
+  // $("#siteSettings").submit(function (e) {
+  //   e.preventDefault();
+  //   $(".alert").hide();
+  //   let formData = new FormData(this);
+  //   formData.append("siteSettings", 1);
+  //   let siteName=formData.get("site_name");
+  //   let siteTitle=formData.get("site_title");
+  //   let siteDesc=formData.get("site_desc");
+  //   let siteAddress=formData.get("site_address");
+  //   let siteEmail=formData.get("site_email");
+  //   let siteContact=formData.get("site_contact");
+  //   if(siteName == ""){
+  //     $("#msgrow").prepend('<div class="alert alert-danger">Site name is required.</div>');
+  //   }else if(siteTitle == ""){
+  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Title is required.</div>');
+  //   }else if(siteDesc == ""){
+  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Description is required.</div>');
+  //   }else if(siteAddress == ""){
+  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Address is required.</div>');
+  //   }else if(siteEmail == ""){
+  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Email Address is required.</div>');
+  //   }else if(siteContact == ""){
+  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Contact No. is required.</div>');
+  //   }else{
+  //     try{
+  //       $.ajax({
+  //         url:"./admin-ajax/adminAjaxFun.php",
+  //         type: "POST",
+  //         data: formData,
+  //         contentType: false,
+  //         processData: false,
+  //         success: function (_responseData) {
+  //         $(".alert").hide();
+  //         let _resData = JSON.parse(_responseData);
+  //         console.log(_resData);
+  //         // if(_resData.hasOwnProperty('success')){
+  //         //   $("#msgrow").prepend(
+  //         //     '<div class="alert alert-success">Profile Updated Successfulll</div>'
+  //         //     );
+  //         //     hideTheAlertMsg();
+  //         // }else if(_resData.hasOwnProperty('error')){
+  //         //   $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
+  //         //   hideTheAlertMsg();
+  //         // }
+  //       }
+  //       })
+  //     }catch(error){
+  //       console.log(error);
+  //     }
+  //   }
 
 
-  })
+  // })
 
   function hideTheAlertMsg(){
     setTimeout(function () {

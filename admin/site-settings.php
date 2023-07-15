@@ -29,19 +29,19 @@
                                     <div class="col-lg-6">
                                             <div class="form-group">
                                                     <label>Site Name*</label>
-                                                    <input class="form-control" name="site_name" id="site_name" value="<?php echo $sesnData['site_name']?>" type="text">
+                                                    <input class="form-control" name="site_name" id="site_name" value="" type="text" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Site Title*</label>
-                                                    <input class="form-control" name="site_title" id="site_title" value="<?php echo $sesnData['site_title']?> " type="text">
+                                                    <input class="form-control" name="site_title" id="site_title" value="" type="text" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Site Description*</label>
-                                                    <input class="form-control" name="site_desc" id="site_desc" value="<?php echo $sesnData['site_desc']?>" type="text">
+                                                    <input class="form-control" name="site_desc" id="site_desc" value="" type="text" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Site Address*</label>
-                                                    <textarea class="form-control" name="site_address" id="site_address"><?php echo $sesnData['site_desc']?></textarea>
+                                                    <textarea class="form-control" name="site_address" id="site_address" required></textarea>
                                                 </div>  
                                     </div>
                                     <div class="col-lg-6">
@@ -52,11 +52,11 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Site Email*</label>
-                                                    <input class="form-control" name="site_email" id="site_email" value="<?php echo $sesnData['site_email']?> " type="text">
+                                                    <input class="form-control" name="site_email" id="site_email" value="" type="email" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Site Contact No*</label>
-                                                    <input class="form-control" name="site_contact" id="site_contact" value="<?php echo $sesnData['site_contact']?> " type="text">
+                                                    <input class="form-control" name="site_contact" id="site_contact" value="" type="text" required>
                                                 </div>
                                                 
                                     </div>
@@ -88,6 +88,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
+
+<script src="js/jquery.validate.min.js"></script>
 
 <!-- Custom JavaScript -->
 <script src="js/custom/custom.js"></script>

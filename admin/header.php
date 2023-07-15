@@ -44,6 +44,19 @@ if(!isset($_SESSION['admin_data']) || empty($_SESSION['admin_data'])){
         <!-- Custom Fonts -->
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+        <style>
+            label.error
+            {
+                color:red;
+            }
+            input.error,textarea.error{
+                border:1px solid red;
+            }
+            input.valid,textarea.valid{
+                border:1px solid green;
+            }
+        </style>
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

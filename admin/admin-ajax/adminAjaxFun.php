@@ -108,7 +108,7 @@ if (isset($_POST['updateTheProfile'])) {
     
 }
 
-if (isset($_POST['updateTheProfile'])) {
+if (isset($_POST['siteSettings'])) {
     echo "<pre>";
         print_r($_POST);
         echo "</pre>";
