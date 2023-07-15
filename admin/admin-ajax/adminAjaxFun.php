@@ -69,13 +69,10 @@ if (isset($_POST['updateThepassword'])) {
 }
 
 if (isset($_POST['updateTheProfile'])) {
-    // echo "<pre>";
-    //     print_r($_POST);
-    //     echo "</pre>";
-    if (!isset($_POST['name']) || empty($_POST['name'])) {
+    if(!isset($_POST['name']) || empty($_POST['name'])) {
         echo json_encode(array("errorMsg" => "Name is required!","error" => "false"));
         exit();
-    } else if (!isset($_POST['email']) || empty($_POST['email'])) {
+    }elseif(!isset($_POST['email']) || empty($_POST['email'])) {
         echo json_encode(array("errorMsg" => "Email is required!","error" => "false"));
         exit();
     }else{
@@ -109,9 +106,68 @@ if (isset($_POST['updateTheProfile'])) {
 }
 
 if (isset($_POST['siteSettings'])) {
-    echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
+    // echo "<pre>";
+    // print_r($_POST);
+    // print_r($_FILES['site_logo']);
+    // echo "</pre>";
+    // exit();
+    if(!isset($_POST['site_name']) || empty($_POST['site_name'])){
+        echo json_encode(array('error'=>'Site Name Field is Empty.')); 
+        exit;
+    }elseif(!isset($_POST['site_title']) || empty($_POST['site_title'])){
+        echo json_encode(array('error'=>'Site Title Field is Empty.')); 
+        exit;
+    }elseif(!isset($_POST['site_desc']) || empty($_POST['site_desc'])){
+        echo json_encode(array('error'=>'Site Description Field is Empty.')); 
+        exit;
+    }elseif(!isset($_POST['site_address']) || empty($_POST['site_address'])){
+        echo json_encode(array('error'=>'Site Address Field is Empty.')); 
+        exit;
+    }elseif(!isset($_POST['site_email']) || empty($_POST['site_email'])){
+        echo json_encode(array('error'=>'Site Email Field is Empty.')); 
+        exit;
+    }elseif(!isset($_POST['site_contact']) || empty($_POST['site_contact'])){
+        echo json_encode(array('error'=>'Site Title Field is Empty.')); 
+        exit;
+    }else{
+
+        $file_name=$_FILES['site_logo']['name'];
+        $file_size=$_FILES['site_logo']['size'];
+        $file_type=$_FILES['site_logo']['type'];
+        $file_temp=$_FILES['site_logo']['tmp_name'];
+
+
+
+
+
+        $db = new Database();
+        $optn_id=$db->_escapeTheStringData($_POST['optn']);
+        $params=[
+            "site_name"=>$db->_escapeTheStringData($_POST['site_name']),
+            "site_title"=>$db->_escapeTheStringData($_POST['site_title']),
+            "site_desc"=>$db->_escapeTheStringData($_POST['site_desc']),
+            "site_address"=>$db->_escapeTheStringData($_POST['site_address']),
+            "site_email"=>$db->_escapeTheStringData($_POST['site_email']),
+            "site_contact"=>$db->_escapeTheStringData($_POST['site_contact']),
+            "site_logo"=>$db->_escapeTheStringData($_FILES['site_logo']['name'])
+        ];
+        $db->_updateData("options", $params, "opt_id='$optn_id'");
+        $resData=$db->_getTheResdata();
+        //echo json_encode($resData);
+        if(array_key_exists("success",$resData) && !is_null($resData['affectedrows'])){
+            if(!empty($_FILES['site_logo']['name'])){
+                move_uploaded_file($file_temp,"../../images".$file_name);
+            }
+            echo json_encode(array("success" => true, "status" => 200));
+            exit();
+        }else if(array_key_exists("success",$resData) && !is_null($resData['affectedrows']<1)){
+            echo json_encode(array("error" => "false","affected_rows"=>$resData['affectedrows'],"errorMsg"=>"It seems that current and Updated are same!"));
+            exit();
+        }else{
+            echo json_encode(array("error" => 'false'));
+            exit();
+        }
+    }
 }
 
 ?>

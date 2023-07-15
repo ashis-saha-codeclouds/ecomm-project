@@ -140,107 +140,68 @@ $(document).ready(function () {
       rules:{
         site_name:"required",
         site_title:"required",
-        site_desc:"required",
-        site_address:"required",
+        site_desc:{
+          required: true,
+          minlength: 4,
+        },
+        site_address:{
+          required: true,
+          minlength: 4,
+        },
         site_email:{
           required:true,
           email:true
         },
-        site_contact:"required",
+        site_contact:{
+          required:true,
+          number:true,
+          minlength:10,
+          maxlength:10
+        }
       },
       messages:{
-        site_name:"Please enter your Site Name",
-        site_title:"Please enter your Site Title",
-        site_desc:"Please enter your Site Description",
-        site_address:"Please enter your Site Address",
-        site_email:"Please enter a valid email address",
-        site_contact:"Please enter your Site Contact Details",
+        site_email:{
+          email:"Please enter a valid email address"
+        },
       },
       submitHandler: function (form) {
-        var formData = $(form).serialize() + '&siteSettings=1';
+        //var formData = $(form).serialize() + '&siteSettings=1';
+        //var form = $('#siteSettings')[0];
+        let formData = new FormData(form);
+        formData.append("siteSettings",1);
+        let name=formData.get('site_name');
+        let site_logo=formData.get('site_logo');
         console.log(formData);
+        console.log(name,site_logo);
         //return false;
         $.ajax({
             type: "POST",
             url: "./admin-ajax/adminAjaxFun.php",
             data: formData,
+            contentType: false,
+            processData: false,
             success: function (_responseData) {
               console.log(_responseData);
-              // let _resData = JSON.parse(_responseData);
-              // console.log(_resData);
+              let _resData = JSON.parse(_responseData);
+              console.log(_resData);
+              if(_resData.hasOwnProperty('success')){
+                $("#msgrow").prepend('<div class="alert alert-success">Site Data Updated Successfulll</div>');
+                // setTimeout(function(){
+                //   window.location();
+                // },1000);
+              }else if(_resData.hasOwnProperty('error')){
+                $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
+                hideTheAlertMsg();
+              }
             }
         });
-        return false; // required to block normal submit since you used ajax
+        return false; // required to block normal submit for ajax submission
     }
     });
-
-  // $("#siteSettings").submit(function (e) {
-  //   e.preventDefault();
-  //   $(".alert").hide();
-  //   let formData = new FormData(this);
-  //   formData.append("siteSettings", 1);
-  //   let siteName=formData.get("site_name");
-  //   let siteTitle=formData.get("site_title");
-  //   let siteDesc=formData.get("site_desc");
-  //   let siteAddress=formData.get("site_address");
-  //   let siteEmail=formData.get("site_email");
-  //   let siteContact=formData.get("site_contact");
-  //   if(siteName == ""){
-  //     $("#msgrow").prepend('<div class="alert alert-danger">Site name is required.</div>');
-  //   }else if(siteTitle == ""){
-  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Title is required.</div>');
-  //   }else if(siteDesc == ""){
-  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Description is required.</div>');
-  //   }else if(siteAddress == ""){
-  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Address is required.</div>');
-  //   }else if(siteEmail == ""){
-  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Email Address is required.</div>');
-  //   }else if(siteContact == ""){
-  //     $("#msgrow").prepend('<div class="alert alert-danger">Site Contact No. is required.</div>');
-  //   }else{
-  //     try{
-  //       $.ajax({
-  //         url:"./admin-ajax/adminAjaxFun.php",
-  //         type: "POST",
-  //         data: formData,
-  //         contentType: false,
-  //         processData: false,
-  //         success: function (_responseData) {
-  //         $(".alert").hide();
-  //         let _resData = JSON.parse(_responseData);
-  //         console.log(_resData);
-  //         // if(_resData.hasOwnProperty('success')){
-  //         //   $("#msgrow").prepend(
-  //         //     '<div class="alert alert-success">Profile Updated Successfulll</div>'
-  //         //     );
-  //         //     hideTheAlertMsg();
-  //         // }else if(_resData.hasOwnProperty('error')){
-  //         //   $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
-  //         //   hideTheAlertMsg();
-  //         // }
-  //       }
-  //       })
-  //     }catch(error){
-  //       console.log(error);
-  //     }
-  //   }
-
-
-  // })
 
   function hideTheAlertMsg(){
     setTimeout(function () {
         $(".alert").hide();
       }, 4000);
-  }
-
-  function validateTheEmail(emailid){
-    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(emailid.match(validRegex)){
-      return true;
-    }else{
-      return false;
-    }
-
   }
 });
