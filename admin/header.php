@@ -34,6 +34,12 @@ if(!isset($_SESSION['admin_data']) || empty($_SESSION['admin_data'])){
 
         <!-- Timeline CSS -->
         <link href="css/timeline.css" rel="stylesheet">
+        
+        <!-- DataTables CSS -->
+        <link href="../css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="../css/dataTables/dataTables.responsive.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="css/startmin.css" rel="stylesheet">

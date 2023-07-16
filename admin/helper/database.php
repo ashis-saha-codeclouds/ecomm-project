@@ -1,5 +1,5 @@
 <?php
-include("db-config.php");
+require("db-config.php");
 class Database
 {
     /**
@@ -199,9 +199,6 @@ class Database
             }
         }
     }
-
-
-
 }
 
 ?>
