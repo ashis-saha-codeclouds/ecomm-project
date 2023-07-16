@@ -3,12 +3,13 @@
                     <ul class="nav" id="side-menu">
                     <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <!-- <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                                </span>
+                                </span> -->
+                                <img id="image" src="../images/ecomm-logo.png" alt="" width="80px" height="60px"/>
                                 <!-- <h2>Dashboard</h2> -->
                             </div>
                             <!-- /input-group -->

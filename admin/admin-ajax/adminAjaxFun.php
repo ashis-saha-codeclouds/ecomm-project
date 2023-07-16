@@ -109,6 +109,11 @@ if (isset($_POST['siteSettings'])) {
     // echo "<pre>";
     // print_r($_POST);
     // print_r($_FILES['site_logo']);
+    // echo $file_name=$_FILES['site_logo']['name'];
+    // echo "------";
+    //  $file_ext=explode('.',$file_name);
+    //  print_r($file_ext);
+    //  echo end($file_ext);
     // echo "</pre>";
     // exit();
     if(!isset($_POST['site_name']) || empty($_POST['site_name'])){
@@ -130,42 +135,80 @@ if (isset($_POST['siteSettings'])) {
         echo json_encode(array('error'=>'Site Title Field is Empty.')); 
         exit;
     }else{
-
-        $file_name=$_FILES['site_logo']['name'];
-        $file_size=$_FILES['site_logo']['size'];
-        $file_type=$_FILES['site_logo']['type'];
-        $file_temp=$_FILES['site_logo']['tmp_name'];
-
-
-
-
-
-        $db = new Database();
-        $optn_id=$db->_escapeTheStringData($_POST['optn']);
-        $params=[
-            "site_name"=>$db->_escapeTheStringData($_POST['site_name']),
-            "site_title"=>$db->_escapeTheStringData($_POST['site_title']),
-            "site_desc"=>$db->_escapeTheStringData($_POST['site_desc']),
-            "site_address"=>$db->_escapeTheStringData($_POST['site_address']),
-            "site_email"=>$db->_escapeTheStringData($_POST['site_email']),
-            "site_contact"=>$db->_escapeTheStringData($_POST['site_contact']),
-            "site_logo"=>$db->_escapeTheStringData($_FILES['site_logo']['name'])
-        ];
-        $db->_updateData("options", $params, "opt_id='$optn_id'");
-        $resData=$db->_getTheResdata();
-        //echo json_encode($resData);
-        if(array_key_exists("success",$resData) && !is_null($resData['affectedrows'])){
-            if(!empty($_FILES['site_logo']['name'])){
-                move_uploaded_file($file_temp,"../../images".$file_name);
+        $errors=array();
+        if(!empty($_POST['site_logo_current']) && empty($_FILES['site_logo']['name'])){
+            $file_name=$_POST['site_logo_current'];
+        }elseif(!empty($_POST['site_logo_current']) && !empty($_FILES['site_logo']['name'])){
+            $file_name=$_FILES['site_logo']['name'];
+            $file_size=$_FILES['site_logo']['size'];
+            $file_type=$_FILES['site_logo']['type'];
+            $file_temp=$_FILES['site_logo']['tmp_name'];
+            $file_name=str_replace(array(',',' '),'',$file_name);
+            $file_ext=explode('.',$file_name);
+            $file_ext=strtolower(end($file_ext));
+            $allowed_ext=array("jpeg","jpg","png");
+            if(!in_array($file_ext,$allowed_ext)){
+                $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
             }
-            echo json_encode(array("success" => true, "status" => 200));
-            exit();
-        }else if(array_key_exists("success",$resData) && !is_null($resData['affectedrows']<1)){
-            echo json_encode(array("error" => "false","affected_rows"=>$resData['affectedrows'],"errorMsg"=>"It seems that current and Updated are same!"));
+            if($file_size>2097152){
+                $errors[]="Sorry! Please upload a file less than 2 MB";
+            }
+            // if(file_exists("../../images/".$_POST['site_logo_current'])){
+            //     unlink("../../images/".$_POST['site_logo_current']);
+            // }
+            $file_name=time()."-".str_replace(array(" ","_"),"-",$file_name);
+        }elseif(empty($_POST['site_logo_current']) && !empty($_FILES['site_logo']['name'])){
+            $file_name=$_FILES['site_logo']['name'];
+            $file_size=$_FILES['site_logo']['size'];
+            $file_type=$_FILES['site_logo']['type'];
+            $file_temp=$_FILES['site_logo']['tmp_name'];
+            $file_name=str_replace(array(',',' '),'',$file_name);
+            $file_ext=explode('.',$file_name);
+            $file_ext=strtolower(end($file_ext));
+            $allowed_ext=array("jpeg","jpg","png");
+            if(!in_array($file_ext,$allowed_ext)){
+                $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
+            }
+            if($file_size>2097152){
+                $errors[]="Sorry! Please upload a file less than 2 MB";
+            }
+            // if(file_exists("../../images/".$_POST['site_logo_current'])){
+            //     unlink("../../images/".$_POST['site_logo_current']);
+            // }
+
+            $file_name=time()."-".str_replace(array(" ","_"),"-",$file_name);
+        }
+        if(!empty($errors)){
+            echo json_encode($errors);
             exit();
         }else{
-            echo json_encode(array("error" => 'false'));
-            exit();
+            $db = new Database();
+            $optn_id=$db->_escapeTheStringData($_POST['optn']);
+            $params=[
+                "site_name"=>$db->_escapeTheStringData($_POST['site_name']),
+                "site_title"=>$db->_escapeTheStringData($_POST['site_title']),
+                "site_desc"=>$db->_escapeTheStringData($_POST['site_desc']),
+                "site_address"=>$db->_escapeTheStringData($_POST['site_address']),
+                "site_email"=>$db->_escapeTheStringData($_POST['site_email']),
+                "site_contact"=>$db->_escapeTheStringData($_POST['site_contact']),
+                "site_logo"=>$db->_escapeTheStringData($file_name)
+            ];
+            $db->_updateData("options", $params, "opt_id='$optn_id'");
+            $resData=$db->_getTheResdata();
+            //echo json_encode($resData);
+            if(array_key_exists("success",$resData) && !is_null($resData['affectedrows'])){
+                if(!empty($_FILES['site_logo']['name'])){
+                    move_uploaded_file($file_temp,"../../images/".$file_name);
+                }
+                echo json_encode(array("success" => true, "status" => 200));
+                exit();
+            }else if(array_key_exists("error",$resData) && ($resData['affectedrows']<1)){
+                echo json_encode(array("error" => "false","affected_rows"=>$resData['affectedrows'],"errorMsg"=>"It seems that current and Updated data are same!"));
+                exit();
+            }else{
+                echo json_encode(array("error" => 'false'));
+                exit();
+            }
         }
     }
 }

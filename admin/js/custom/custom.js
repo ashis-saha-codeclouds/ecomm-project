@@ -95,7 +95,6 @@ $(document).ready(function () {
   $("#adminProfile").submit(function (e) {
     e.preventDefault();
     $(".alert").hide();
-    let validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     let formData = new FormData(this);
     formData.append("updateTheProfile", 1);
     let name=formData.get('name');
@@ -186,12 +185,16 @@ $(document).ready(function () {
               console.log(_resData);
               if(_resData.hasOwnProperty('success')){
                 $("#msgrow").prepend('<div class="alert alert-success">Site Data Updated Successfulll</div>');
-                // setTimeout(function(){
-                //   window.location();
-                // },1000);
+                hideTheAlertMsg();
+                setTimeout(function(){
+                  window.location.reload();
+                },1000);
               }else if(_resData.hasOwnProperty('error')){
                 $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
                 hideTheAlertMsg();
+                setTimeout(function(){
+                  window.location.reload();
+                },1000);
               }
             }
         });
