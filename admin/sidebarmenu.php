@@ -18,7 +18,7 @@
                             <a href="dashboard.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-shopping-cart fa-fw"></i>Manage Product<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Manage Product<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                             <li>
                                     <a href="products.php">All Products</a>
@@ -26,6 +26,10 @@
                                 <li>
                                     <a href="add-product.php">Add Products</a>
                                 </li>
+                                <li>
+                                    <a href="add-category.php">Category</a>
+                                </li>
+                               
                                 
                             </ul>
                             <!-- /.nav-second-level -->
@@ -50,7 +54,18 @@
                                     <a href="add-users.php">Add Users</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-file-photo-o"></i> Manage Banner<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+
+                                <li>
+                                    <a href="banner.php">Banners</a>
+                                </li>
+                                <li>
+                                    <a href="add-banner.php">Add Banner</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="site-settings.php"><i class="fa fa-gear fa-fw"></i> Site Settings</a>
