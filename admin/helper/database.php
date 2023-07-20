@@ -17,17 +17,41 @@ class Database
     /**
      * $dbname for Database Name
      */
-    private $dbname = DB_NAME;
+    protected $dbname = DB_NAME;
 
     /**
      * $mysqli for MySqli object
      */
-    private $mysqli="";
+    private $mysqliq="";
     /**
      * Declared for the database connection status/res. Default values set as False
      */
-    private $conn = false;
+    protected $conn = false;
 
+    protected function __dbconnect()
+    {
+        if (!$this->conn) {
+            /**
+             * checking the DB connection
+             */
+            try {
+                $this->mysqliq = new mysqli($this->dbhost, $this->dbuser, $this->dbpassword, $this->dbname);
+                return $this->mysqliq;  
+            } catch (Exception $e) {
+                echo 'Exception Message: ' . $e->getMessage();
+                return false;
+                
+            }
+        } else {
+            echo "Database Connected!";
+            return $this->mysqliq;  
+            //return true;
+        }
+    }
+}
+
+class BuildQuery extends Database
+{
     /**
      * Any results from a query will be stored here
      */
@@ -35,26 +59,12 @@ class Database
     /**
      * Used to generate the SQL Query String
      */
-    private $myQuery = "";
+    private $mysqli = "";
 
-    public function __construct()
-    {
-        if (!$this->conn) {
-            /**
-             * checking the DB connection
-             */
-            try {
-                $this->mysqli = new mysqli($this->dbhost, $this->dbuser, $this->dbpassword, $this->dbname);
-                } catch (Exception $e) {
-                echo 'Exception Message: ' . $e->getMessage();
-                return false;
-                
-            }
-        } else {
-            echo "Database Connected!";
-            return true;
-        }
+    public function __construct(){
+        $this->mysqli=$this->__dbconnect();
     }
+
     /**
      * _selectData function to select all the data based from the respective tablename
      * @param $table=Table Name | $columns=Column Names, Default is All
@@ -198,7 +208,7 @@ class Database
                 return false;
             }
         }
-    }
+     }
 }
 
 ?>

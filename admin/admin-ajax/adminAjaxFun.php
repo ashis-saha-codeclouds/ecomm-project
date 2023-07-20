@@ -6,13 +6,20 @@ include('../helper/database.php');
 // $db->_selectData("admin","");
 // $result=$db->_getTheResdata();
 // echo json_encode($result);
+
+// $db=new BuildQuery();
+// $db->_selectData("admin","*","");
+// $result=$db->_getTheResdata();
+// echo json_encode($result);
+// die();
+
 if (isset($_POST['_login'])) {
     if (!isset($_POST['_username']) || empty($_POST['_username'])) {
         json_encode(array("error" => "Name is Empty!"));
     } elseif (!isset($_POST['_password']) || empty($_POST['_password'])) {
         json_encode(array("error" => "Password is Empty!"));
     } else {
-        $db = new Database();
+        $db = new BuildQuery();
         $username = $db->_escapeTheStringData($_POST['_username']);
         $password = md5($db->_escapeTheStringData($_POST['_password']));
         $db->_selectData('admin', 'username, name, admin_id, role, email_id', "username = '$username' AND password = '$password'");
@@ -42,7 +49,7 @@ if (isset($_POST['updateThepassword'])) {
         echo json_encode(array("errorMsg" => "New Password is same as the old password!","error" => "false"));
         exit();
     } else {
-        $db = new Database();
+        $db = new BuildQuery();
         $oldpassword = md5($db->_escapeTheStringData($_POST['oldPassword']));
         $newpassword = md5($db->_escapeTheStringData($_POST['newPassword']));
         $emailid = $db->_escapeTheStringData($_POST['email']);
@@ -76,7 +83,7 @@ if (isset($_POST['updateTheProfile'])) {
         echo json_encode(array("errorMsg" => "Email is required!","error" => "false"));
         exit();
     }else{
-        $db = new Database();
+        $db = new BuildQuery();
         $name=$db->_escapeTheStringData($_POST['name']);
         $email=$db->_escapeTheStringData($_POST['email']);
         $admin_id=$db->_escapeTheStringData($_POST['role']);
@@ -182,7 +189,7 @@ if (isset($_POST['siteSettings'])) {
             echo json_encode($errors);
             exit();
         }else{
-            $db = new Database();
+            $db = new BuildQuery();
             $optn_id=$db->_escapeTheStringData($_POST['optn']);
             $params=[
                 "site_name"=>$db->_escapeTheStringData($_POST['site_name']),

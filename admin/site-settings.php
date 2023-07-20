@@ -1,6 +1,6 @@
 <?php include "header.php"; ?>
 <?php 
-$db=new Database();
+$db=new BuildQuery();
 $db->_selectData("options","*",null);
 $resData=$db->_getTheResdata();
 if($resData>0){
