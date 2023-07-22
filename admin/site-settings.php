@@ -1,8 +1,9 @@
 <?php include "header.php"; ?>
-<?php 
-$db=new BuildQuery();
-$db->_selectData("options","*",null);
-$resData=$db->_getTheResdata();
+<?php
+require_once("helper/admin.php"); 
+$resObj=new Admin();
+$resObj->__getTheSiteSettings();
+$resData=$resObj->_getTheResdata();
 if($resData>0){
     $site_name=$resData['site_name'];
     $site_title=$resData['site_title'];

@@ -1,5 +1,4 @@
 <?php
-require_once("helper/config.php");
 if(!session_id()){
     session_start();
 }

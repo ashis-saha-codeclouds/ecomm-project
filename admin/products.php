@@ -1,18 +1,4 @@
 <?php include "header.php"; ?>
-<?php 
-$db=new Database();
-$db->_selectData("options","*",null);
-$resData=$db->_getTheResdata();
-if($resData>0){
-    $site_name=$resData['site_name'];
-    $site_title=$resData['site_title'];
-    $site_desc=$resData['site_desc'];
-    $site_logo=$resData['site_logo'];
-    $site_address=$resData['site_address'];
-    $site_contact=$resData['site_contact'];
-    $site_email=$resData['site_email'];
-}
-?>
 <body>
         <div id="wrapper">
             <!-- Start of the Navigation -->
