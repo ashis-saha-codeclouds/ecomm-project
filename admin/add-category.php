@@ -26,7 +26,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-8">
-                                            <form role="form" id="adminProfile" method="post">
+                                            <form role="form" id="productCategory" name="productCategory" method="post">
                                             <div class="form-group">
                                                     <label>Category Name *</label>
                                                     <input class="form-control" required name="cat_name" id="cat_name" placeholder="Category Name" value="" type="text">
@@ -107,8 +107,10 @@
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
 
+<script src="js/jquery.validate.min.js"></script>
+
 <!-- Custom JavaScript -->
-<script src="js/custom/custom.js"></script>
+<script src="js/custom/category.js"></script>
 
     </body>
 

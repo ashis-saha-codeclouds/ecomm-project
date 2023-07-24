@@ -26,20 +26,20 @@
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-8">
-                                            <form role="form" id="adminProfile" method="post">
+                                            <form role="form" id="siteBanner" name="siteBanner" method="post">
                                             <div class="form-group">
                                                     <label>Banner Name *</label>
-                                                    <input class="form-control" required name="cat_name" id="cat_name" placeholder="Category Name" value="" type="text">
+                                                    <input class="form-control" required name="banner_name" id="banner_name" placeholder="Category Name" value="" type="text">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Upload Banner Image</label>
-                                                    <input class="form-control" name="site_logo" id="site_logo" type="file">
+                                                    <input class="form-control" name="banner_logo" id="banner_logo" type="file">
                                                     <input class="form-control" name="site_logo_current" id="site_logo_current" value="<?php echo $site_logo; ?>" type="hidden">
                                                     <div style="margin: 2px;"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Status *</label>
-                                                    <select class="form-control" name="cat_status" id="cat_status" required>
+                                                    <select class="form-control" name="banner_status" id="cat_status" required>
                                                         <option value="1">Active</option>
                                                         <option value="2">In Active</option>
                                                     </select>
@@ -114,7 +114,7 @@
 <script src="js/startmin.js"></script>
 
 <!-- Custom JavaScript -->
-<script src="js/custom/custom.js"></script>
+<script src="js/custom/banner.js"></script>
 
     </body>
 

@@ -10,5 +10,6 @@ $("#product").validate({
     submitHandler: function(form){
         let formData=new FormData(form);
         formData.append("productAdd",1);
+        
     }
 })
