@@ -1,6 +1,6 @@
 <?php
 require("db-config.php");
-class Database
+abstract class Database
 {
     /**
      * $dbhost for the Database Host
@@ -49,7 +49,5 @@ class Database
         }
     }
 }
-
-
 
 ?>

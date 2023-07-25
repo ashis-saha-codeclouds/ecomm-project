@@ -41,7 +41,7 @@ class BuildQuery extends Database implements QueryBuildInterface
 
             $queryRes = $this->mysqli->query($sql); 
             if ($queryRes) {
-                $this->resultArr = $queryRes->fetch_assoc();
+                $this->resultArr = $queryRes->fetch_all(MYSQLI_ASSOC);
                 return true;
             }else{
                 array_push($this->resultArr,$this->mysqli->error);
@@ -97,6 +97,59 @@ class BuildQuery extends Database implements QueryBuildInterface
         }else{
             $this->resultArr=array("error"=>$this->mysqli->error);
             return false;
+        }
+
+    }
+/**
+ * _insertTheData function to insert the data in the table.
+ * @param $table is the Table Name where the data needs to be inserted
+ * @param array $payload is a combination of table columns and values
+ * Return an associative array of data of the result set
+ */
+    protected function _insertTheData($table,$payload=array()){
+        if($this->_isTableExist($table)){
+            //INSERT INTO `categories` (`cat_id`, `cat_title`, `cat_status`, `created_at`, `is_deleted`) VALUES (NULL, 'asas', '1', current_timestamp(), 'N');
+            $table_columns = implode(', ',array_keys($payload));
+            $table_value =implode("','" , $payload);
+            $sql="INSERT INTO $table ($table_columns) VALUES ('$table_value')";
+            // echo $sql;
+            // die();
+            if($this->mysqli->query($sql)){
+                $this->resultArr=array("insert_id"=>$this->mysqli->insert_id,'success'=>true);
+                return true;
+            }else{
+                $error=$this->mysqli->error?$this->mysqli->error:true;
+                $this->resultArr=array("error"=>$error);
+                return false;
+            }
+        }else{
+            $this->resultArr=array("error"=>$this->mysqli->error);
+            return false;
+        }
+    }
+
+    protected function _deleteTheData($table,$whereClause=null){
+        if($this->_isTableExist($table)){
+            $sql="DELETE from $table";
+            if($whereClause!=null){
+                $sql .=" WHERE $whereClause";
+            }
+            // echo $sql;
+            // die();
+            if($this->mysqli->query($sql)){
+                $affectedRows=$this->mysqli->affected_rows;
+                if($affectedRows){
+                    $this->resultArr=array("affectedrows"=>$affectedRows,'success'=>true);
+                    return true;
+                }else{
+                    $error=$this->mysqli->error?$this->mysqli->error:true;
+                    $this->resultArr=array("error"=>$error,"affectedrows"=>$affectedRows);
+                    return false;
+                }
+            }else{
+                $this->resultArr=array("error"=>$this->mysqli->error);
+                return false;
+            }
         }
 
     }

@@ -26,15 +26,15 @@
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-6">
-                                            <form role="form" id="adminProfile" method="post">
+                                            <form role="form" id="adminProfile" method="post" action="">
                                             <div class="form-group">
                                                     <label>Name *</label>
-                                                    <input class="form-control" required name="name" id="name" placeholder="" value="<?php echo $sesnData['name']?>" type="text">
+                                                    <input class="form-control" required name="name" id="name" placeholder="" value="<?php echo $sesnData[0]['name']?>" type="text">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email *</label>
-                                                    <input class="form-control" required name="email" id="email" placeholder="" value="<?php echo $sesnData['email_id']?> " type="text">
-                                                    <input type="hidden" name="role" value="<?php echo $sesnData['admin_id'] ?>" >
+                                                    <input class="form-control" required name="email" id="email" placeholder="" value="<?php echo $sesnData[0]['email_id']?> " type="text">
+                                                    <input type="hidden" name="role" value="<?php echo $sesnData[0]['admin_id'] ?>" >
                                                 </div>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
                                             </form>

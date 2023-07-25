@@ -136,6 +136,12 @@ class Admin extends BuildQuery{
 
     public function __getTheSiteSettings(){
        $this->_selectData("options","*",null);
+       $resData=$this->_getTheResdata();
+        if(!empty($resData)){
+            return json_encode($resData);
+        }else{
+            return json_encode(array("error" => "false"));
+        }
     }
 }
 ?>

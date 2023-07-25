@@ -26,7 +26,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-6">
-                                            <form id="resetThePassword" role="form" method="post">
+                                            <form id="resetThePassword" role="form" method="post" action="">
                                             <div class="form-group">
                                                     <label>Enter Old Password</label>
                                                     <input class="form-control" name="oldPassword" id="oldPassword" placeholder="XXXXXX" type="password">
@@ -35,7 +35,7 @@
                                                     <label>Enter New Password</label>
                                                     <input class="form-control" name="newPassword" id="newPassword" placeholder="XXXXXX" type="password">
                                                 </div>
-                                                <input type="hidden" name="email" value="<?php echo $sesnData['email_id']; ?>"/>
+                                                <input type="hidden" name="email" value="<?php echo $sesnData[0]['email_id']; ?>"/>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
                                             </form>
                                     </div>

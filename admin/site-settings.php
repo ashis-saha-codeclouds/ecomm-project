@@ -2,17 +2,17 @@
 <?php
 require_once("helper/admin.php"); 
 $resObj=new Admin();
-$resObj->__getTheSiteSettings();
-$resData=$resObj->_getTheResdata();
-if($resData>0){
-    $site_name=$resData['site_name'];
-    $site_title=$resData['site_title'];
-    $site_desc=$resData['site_desc'];
-    $site_logo=$resData['site_logo'];
-    $site_address=$resData['site_address'];
-    $site_contact=$resData['site_contact'];
-    $site_email=$resData['site_email'];
+$resData=json_decode($resObj->__getTheSiteSettings(),true);
+if(count($resData)>0){
+    echo $site_name=$resData[0]['site_name'];
+    $site_title=$resData[0]['site_title'];
+    $site_desc=$resData[0]['site_desc'];
+    $site_logo=$resData[0]['site_logo'];
+    $site_address=$resData[0]['site_address'];
+    $site_contact=$resData[0]['site_contact'];
+    $site_email=$resData[0]['site_email'];
 }
+
 ?>
 <body>
         <div id="wrapper">
@@ -40,7 +40,7 @@ if($resData>0){
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                    <form role="form" id="siteSettings" method="post" enctype="multipart/form-data">
+                                    <form role="form" id="siteSettings" method="post" enctype="multipart/form-data" action="">
                                     <div class="col-lg-6">
                                             <div class="form-group">
                                                     <label>Site Name*</label>

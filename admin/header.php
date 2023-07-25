@@ -9,6 +9,7 @@ if(!isset($_SESSION['admin_data']) || empty($_SESSION['admin_data'])){
     $sesnData=json_decode($_SESSION['admin_data'],true);
 }
 //  echo "<pre>";
+//  print_r($_SESSION);
 //  print_r($sesnData);
 //  echo '</pre>';
 //  echo $sesnData['email_id'];

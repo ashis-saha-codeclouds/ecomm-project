@@ -12,7 +12,7 @@
                 <ul class="nav navbar-right navbar-top-links">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> <?php echo $sesnData['name'] ?> <b class="caret"></b>
+                            <i class="fa fa-user fa-fw"></i> <?php echo $sesnData[0]['name'] ?> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>

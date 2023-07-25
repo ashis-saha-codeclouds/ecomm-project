@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 //include('../helper/build_query.php');
 include('../helper/admin.php');
+include('../helper/category.php');
 // $db = new Database();
 // $db->_selectData("admin","");
 // $result=$db->_getTheResdata();
@@ -228,11 +229,40 @@ if (isset($_POST['siteSettings'])) {
             // }else{
             //     echo json_encode(array("error" => 'false'));
             //     exit();
-            // }
+            // }    
             $adminDb = new Admin();
             $res=$adminDb->__updateTheSiteSettings($_POST,$_FILES);
             echo $res;    
         }
+    }
+
+    if(isset($_POST["categoryAdd"])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        if(!isset($_POST['cat_name']) || empty($_POST['cat_name'])){
+            echo json_encode(array('error'=>'Category Name is Empty.')); 
+            exit();
+        }else{
+            $catdb = new Category();
+            $res=$catdb->__createProductCategory($_POST);
+            echo $res;
+        }
+    }
+
+    if(isset($_POST['cat_del'])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        if(!isset($_POST['catid']) || empty($_POST['catid'])){
+            echo json_encode(array('error'=>'category id is missing!'));
+            exit();
+        }else{
+            $catdb = new Category();
+            $res=$catdb->__delTheCategory($_POST);
+            echo $res;
+        }
+
     }
 
 ?>
