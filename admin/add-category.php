@@ -55,7 +55,7 @@ $catRes=json_decode($catres,true);
                                     <div class="table-responsive">
                                         <?php
                                         if(count($catRes)>0){ ?>
-                                        <table class="table table-striped table-bordered table-hover">
+                                        <table class="table table-striped table-bordered table-hover" id="all-product-cat-table">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -65,11 +65,13 @@ $catRes=json_decode($catres,true);
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach($catRes as $resRow) {?>
+                                                <?php foreach($catRes as $resRow) {
+                                                    $catStatus=($resRow['cat_status'])?'Active':'In Active';
+                                                    ?>
                                                 <tr>
                                                     <td><?php echo $resRow['cat_id'] ?></td>
                                                     <td><?php echo $resRow['cat_title'] ?></td>
-                                                    <td><?php echo $resRow['cat_status'] ?></td>
+                                                    <td><?php echo $catStatus; ?></td>
                                                     <td><a class="del_cat" href="javascript:void(0)" data-id="<?php echo $resRow['cat_id'] ?>"><i class="fa fa-remove"></i></a></td>
                                                 </tr>
                                                 <?php } ?>
@@ -106,10 +108,22 @@ $catRes=json_decode($catres,true);
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
 
+<!-- DataTables JavaScript -->
+<script src="js/dataTables/jquery.dataTables.min.js"></script>
+<script src="js/dataTables/dataTables.bootstrap.min.js"></script>
+
 <script src="js/jquery.validate.min.js"></script>
 
 <!-- Custom JavaScript -->
 <script src="js/custom/category.js"></script>
+
+<script>
+            $(document).ready(function () {
+                $('#all-product-cat-table').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
 
     </body>
 
