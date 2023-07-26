@@ -4,6 +4,10 @@ require_once("helper/category.php");
 $resObj=new Category();
 $catres=$resObj->__getAllTheProductCategory();
 $catRes=json_decode($catres,true);
+// echo $catRes['error'];
+// echo '<pre>';
+// print_r($catRes);
+// die();
 ?>
 <body>
         <div id="wrapper">
@@ -54,32 +58,32 @@ $catRes=json_decode($catres,true);
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <?php
-                                        if(count($catRes)>0){ ?>
-                                        <table class="table table-striped table-bordered table-hover" id="all-product-cat-table">
+                                        if((count($catRes)>0) && $catRes['error']!==false){ ?>
+                                       <table class="table table-striped table-bordered table-hover" id="all-product-cat-table">
                                             <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Category Name</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach($catRes as $resRow) {
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Category Name</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach($catRes as $resRow) {
                                                     $catStatus=($resRow['cat_status'])?'Active':'In Active';
                                                     ?>
-                                                <tr>
-                                                    <td><?php echo $resRow['cat_id'] ?></td>
-                                                    <td><?php echo $resRow['cat_title'] ?></td>
-                                                    <td><?php echo $catStatus; ?></td>
-                                                    <td><a class="del_cat" href="javascript:void(0)" data-id="<?php echo $resRow['cat_id'] ?>"><i class="fa fa-remove"></i></a></td>
-                                                </tr>
-                                                <?php } ?>
-                                            </tbody>
+                                                    <tr>
+                                                        <td>#<?php echo $resRow['cat_id'] ?></td>
+                                                        <td><?php echo $resRow['cat_title'] ?></td>
+                                                        <td><?php echo $catStatus; ?></td>  
+                                                        <td><a class="del_cat" href="javascript:void(0)" data-id="<?php echo $resRow['cat_id'] ?>">Delete</a></td>
+                                                    </tr>
+                                                    <?php } ?>
+                                                </tbody>
                                         </table>
-                                        <?php }else{ ?>
-                                        <div class="not-found">!!! No Category Available !!!</div>
-                                    <?php    }  ?>
+                                        <?php } else{ ?>
+                                            <div> No Category Found!</div>
+                                            <?php } ?>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>

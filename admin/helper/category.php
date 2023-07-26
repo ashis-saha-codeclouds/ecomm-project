@@ -27,7 +27,7 @@ class Category extends BuildQuery{
         if(!empty($resData)){
             return json_encode($resData);
         }else{
-            return json_encode(array("error" => "false"));
+            return json_encode(array("error" => false));
         }
     }
 
