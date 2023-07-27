@@ -32,6 +32,42 @@ $("#productCategory").validate({
       })
   }
 })
+
+$("#editProductCategory").validate({
+  rules:{
+    cat_name:"required"
+  },
+  submitHandler: function(form){
+    let formData=new FormData(form);
+    formData.append("categoryEdit",1);
+    $.ajax({
+        type:"POST",
+        url:"./admin-ajax/adminAjaxFun.php",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success:function(_responseData){
+            console.log(_responseData);
+            let _resData = JSON.parse(_responseData);
+            console.log(_resData);
+            if(_resData.hasOwnProperty('success')){
+                $("#msgrow").prepend('<div class="alert alert-success">Category created Successfully</div>');
+                hideTheAlertMsg();
+                setTimeout(function(){
+                  window.location.reload();
+                },1000);
+              }else if(_resData.hasOwnProperty('error')){
+                $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
+                hideTheAlertMsg();
+                setTimeout(function(){
+                  window.location.reload();
+                },2000);
+              }
+        }
+    })
+}
+})
+
 $(".del_cat").on("click",function(){
   var catrow=$(this);
   var catid=$(this).attr('data-id');

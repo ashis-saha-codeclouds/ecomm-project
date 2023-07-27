@@ -21,8 +21,24 @@ class Category extends BuildQuery{
 
     }
 
+    public function __updateProductCategory($payload){
+        echo "<pre>";
+        print_r($payload);
+        echo "</pre>";
+    }
+
     public function  __getAllTheProductCategory(){
         $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N'");
+        $resData=$this->_getTheResdata();
+        if(!empty($resData)){
+            return json_encode($resData);
+        }else{
+            return json_encode(array("error" => false));
+        }
+    }
+
+    public function  __getTheCategoryById($id){
+        $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N' AND cat_id='$id'");
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);

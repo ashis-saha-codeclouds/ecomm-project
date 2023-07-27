@@ -8,6 +8,18 @@ $catRes=json_decode($catres,true);
 // echo '<pre>';
 // print_r($catRes);
 // die();
+
+if(isset($_REQUEST['cat_id']) && !empty($_REQUEST['cat_id'])){
+    $catObj=new Category();
+    $catFres=$catObj->__getTheCategoryById($_REQUEST['cat_id']);
+    $catFres=json_decode($catFres,true);
+    $catData=$catFres[0];
+    //echo $catRes['error'];
+    // echo '<pre>';
+    // print_r($catData);
+    // die();
+}
+
 ?>
 <body>
         <div id="wrapper">
@@ -39,8 +51,11 @@ $catRes=json_decode($catres,true);
                                             <form role="form" id="productCategory" name="productCategory" method="post" action="">
                                             <div class="form-group">
                                                     <label>Category Name *</label>
-                                                    <input class="form-control" required name="cat_name" id="cat_name" placeholder="Category Name" value="" type="text">
+                                                    <input class="form-control" required name="cat_name" id="cat_name" placeholder="Category Name" value="<?php echo $catData['cat_title']; ?>" type="text">
                                                 </div>
+                                                <?php if(!empty($_REQUEST['cat_id']) && ($_REQUEST['action']=='edit')){ ?>
+                                                <input type="hidden" name="ctid" value="<?php echo $catData['cat_id']; ?>"/>
+                                                <?php } ?>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
                                             </form>
                                     </div>
@@ -76,7 +91,10 @@ $catRes=json_decode($catres,true);
                                                         <td>#<?php echo $resRow['cat_id'] ?></td>
                                                         <td><?php echo $resRow['cat_title'] ?></td>
                                                         <td><?php echo $catStatus; ?></td>  
-                                                        <td><a class="del_cat" href="javascript:void(0)" data-id="<?php echo $resRow['cat_id'] ?>">Delete</a></td>
+                                                        <td>
+                                                            <a class="edit_cat" href="edit-category.php?cat_id=<?php echo $resRow['cat_id']?>&action=edit"><i class="fa fa-edit"></i></a>
+                                                            <a class="del_cat" href="javascript:void(0)" data-id="<?php echo $resRow['cat_id']?>"><i class="fa fa-trash"></i></a>
+                                                        </td>
                                                     </tr>
                                                     <?php } ?>
                                                 </tbody>
