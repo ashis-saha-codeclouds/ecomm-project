@@ -26,10 +26,10 @@
                                 <div class="panel-body">
                                     <div class="row">
                                     <div class="col-lg-8">
-                                            <form role="form" id="siteBanner" name="siteBanner" method="post">
+                                            <form role="form" id="siteBanner" name="siteBanner" method="post" action="">
                                             <div class="form-group">
-                                                    <label>Banner Name *</label>
-                                                    <input class="form-control" required name="banner_name" id="banner_name" placeholder="Category Name" value="" type="text">
+                                                    <label>Banner Title *</label>
+                                                    <input class="form-control" required name="banner_name" id="banner_name" placeholder="Banner Title" value="" type="text">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Upload Banner Image</label>
@@ -37,13 +37,13 @@
                                                     <input class="form-control" name="site_logo_current" id="site_logo_current" value="<?php echo $site_logo; ?>" type="hidden">
                                                     <div style="margin: 2px;"></div>
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label>Status *</label>
                                                     <select class="form-control" name="banner_status" id="cat_status" required>
                                                         <option value="1">Active</option>
                                                         <option value="2">In Active</option>
                                                     </select>
-                                                </div>
+                                                </div> -->
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
                                             </form>
                                     </div>
@@ -60,7 +60,7 @@
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
+                                        <table class="table table-striped table-bordered table-hover" id="all-product-banner-table">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -113,8 +113,22 @@
 <!-- Custom Theme JavaScript -->
 <script src="js/startmin.js"></script>
 
+<!-- DataTables JavaScript -->
+<script src="js/dataTables/jquery.dataTables.min.js"></script>
+<script src="js/dataTables/dataTables.bootstrap.min.js"></script>
+
+<script src="js/jquery.validate.min.js"></script>
+
 <!-- Custom JavaScript -->
 <script src="js/custom/banner.js"></script>
+
+<script>
+            $(document).ready(function () {
+                $('#all-product-banner-table').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
 
     </body>
 

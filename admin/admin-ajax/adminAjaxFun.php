@@ -237,10 +237,10 @@ if (isset($_POST['siteSettings'])) {
     }
 
     if(isset($_POST["categoryAdd"])){
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-        die();
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        // die();
         if(!isset($_POST['cat_name']) || empty($_POST['cat_name'])){
             echo json_encode(array('error'=>'Category Name is Empty.')); 
             exit();
