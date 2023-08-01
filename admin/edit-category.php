@@ -47,9 +47,9 @@ if(isset($_REQUEST['cat_id']) && !empty($_REQUEST['cat_id'])){
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                    <div class="col-lg-8">
+                                        <div class="col-lg-8">
                                             <form role="form" id="editProductCategory" name="editProductCategory" method="post" action="">
-                                            <div class="form-group">
+                                                <div class="form-group">
                                                     <label>Category Name *</label>
                                                     <input class="form-control" required name="cat_name" id="cat_name" placeholder="Category Name" value="<?php echo $catData['cat_title']; ?>" type="text">
                                                 </div>
@@ -58,8 +58,7 @@ if(isset($_REQUEST['cat_id']) && !empty($_REQUEST['cat_id'])){
                                                 <?php } ?>
                                                 <button type="submit" class="btn btn-primary"> Update </button>
                                             </form>
-                                    </div>
-                                    
+                                        </div>
                                     </div>
                                 </div>
                         </div>

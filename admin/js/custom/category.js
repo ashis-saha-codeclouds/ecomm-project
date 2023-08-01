@@ -51,17 +51,14 @@ $("#editProductCategory").validate({
             let _resData = JSON.parse(_responseData);
             console.log(_resData);
             if(_resData.hasOwnProperty('success')){
-                $("#msgrow").prepend('<div class="alert alert-success">Category created Successfully</div>');
+                $("#msgrow").prepend('<div class="alert alert-success">Category Updated Successfully</div>');
                 hideTheAlertMsg();
                 setTimeout(function(){
-                  window.location.reload();
+                  window.location.href = 'add-category.php';
                 },1000);
               }else if(_resData.hasOwnProperty('error')){
                 $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
                 hideTheAlertMsg();
-                setTimeout(function(){
-                  window.location.reload();
-                },2000);
               }
         }
     })

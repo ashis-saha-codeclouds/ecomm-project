@@ -22,9 +22,23 @@ class Category extends BuildQuery{
     }
 
     public function __updateProductCategory($payload){
-        echo "<pre>";
-        print_r($payload);
-        echo "</pre>";
+        $cat_name=$this->_escapeTheStringData($payload['cat_name']);
+        $catid=$this->_escapeTheStringData($payload['ctid']);
+        // $this->_selectData('categories','cat_title',"cat_title='$cat_name'");
+        // $resChekData=$this->_getTheResdata();
+        // if(!empty($resChekData)){
+        //     return json_encode(array("error" => "false",'errorMsg'=>'Product Category is already exists!'));
+        // }else{
+            $this->_updateData("categories",array('cat_title'=>$cat_name),"cat_id='$catid'");
+            $resData=$this->_getTheResdata();
+            if(array_key_exists("success",$resData) && !is_null($resData['affectedrows'])){
+                return json_encode(array("success" => true, "status" => 200));
+            }else if(array_key_exists("error",$resData) && ($resData['affectedrows']<1)){
+                return json_encode(array("error" => "false","affected_rows"=>$resData['affectedrows'],"errorMsg"=>"It seems that current and Updated data are same!"));
+            }else{
+                return json_encode(array("error" => 'false'));
+            }
+        //}
     }
 
     public function  __getAllTheProductCategory(){
