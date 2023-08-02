@@ -25,29 +25,28 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                    <div class="col-lg-8">
-                                            <form role="form" id="siteBanner" name="siteBanner" method="post" action="">
-                                            <div class="form-group">
+                                        <div class="col-lg-8">
+                                            <form role="form" id="siteBanner" name="siteBanner" method="post" action="" enctype="multipart/form-data">
+                                                <div class="form-group">
                                                     <label>Banner Title *</label>
-                                                    <input class="form-control" required name="banner_name" id="banner_name" placeholder="Banner Title" value="" type="text">
+                                                    <input class="form-control" required name="banner_title" id="banner_title" placeholder="Banner Title" value="" type="text">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Upload Banner Image</label>
-                                                    <input class="form-control" name="banner_logo" id="banner_logo" type="file">
-                                                    <input class="form-control" name="site_logo_current" id="site_logo_current" value="<?php echo $site_logo; ?>" type="hidden">
-                                                    <div style="margin: 2px;"></div>
+                                                    <input class="form-control" name="banner_image" id="banner_image" type="file" required>
+                                                    <!-- <input class="form-control" name="banner_image_current" id="banner_image_current" value="" type="hidden"> -->
+                                                    <div style="margin: 2px;"></div>    
                                                 </div>
-                                                <!-- <div class="form-group">
+                                                <div class="form-group">
                                                     <label>Status *</label>
-                                                    <select class="form-control" name="banner_status" id="cat_status" required>
-                                                        <option value="1">Active</option>
+                                                    <select class="form-control" name="banner_status" id="banner_status" required>
+                                                        <option value="1">Publish</option>
                                                         <option value="2">In Active</option>
                                                     </select>
-                                                </div> -->
+                                                </div>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
                                             </form>
-                                    </div>
-                                    
+                                        </div>
                                     </div>
                                 </div>
                         </div>

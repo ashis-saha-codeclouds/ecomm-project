@@ -1,6 +1,15 @@
 $("#siteBanner").validate({
     rules:{
-        banner_name:"required"
+        banner_title:"required",
+        banner_status:"required",
+        banner_image:{
+          required:true
+        }
+    },
+    messages:{
+      banner_image:{
+        required:"Please select the banner image"
+      }
     },
     submitHandler: function(form){
       let formData=new FormData(form);
@@ -20,13 +29,13 @@ $("#siteBanner").validate({
                   hideTheAlertMsg();
                   setTimeout(function(){
                     window.location.reload();
-                  },1000);
+                  },3000);
                 }else if(_resData.hasOwnProperty('error')){
                   $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
                   hideTheAlertMsg();
                   setTimeout(function(){
                     window.location.reload();
-                  },2000);
+                  },10000);
                 }
           }
       })

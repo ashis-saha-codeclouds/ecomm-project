@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 //include('../helper/build_query.php');
 include('../helper/admin.php');
 include('../helper/category.php');
+include('../helper/banner.php');
 // $db = new Database();
 // $db->_selectData("admin","");
 // $result=$db->_getTheResdata();
@@ -275,6 +276,24 @@ if (isset($_POST['siteSettings'])) {
             echo $res;
         }
 
+    }
+
+    if(isset($_POST['bannerAdd'])){
+        if(!isset($_POST['banner_title']) || empty($_POST['banner_title'])){
+            echo json_encode(array('error'=>'Banner Title Field is Empty.')); 
+            exit;
+        }elseif(!isset($_POST['banner_status']) || empty($_POST['banner_status'])){
+            echo json_encode(array('error'=>'Banner Title Field is Empty.')); 
+            exit;
+        }else{
+            // echo "<pre>";
+            // print_r($_POST);
+            // print_r($_FILES);
+            // echo "</pre>";
+            $bannerDb = new Banner();
+            $res=$bannerDb->__createTheBanner($_POST,$_FILES);
+            echo $res;  
+        }
     }
 
 ?>
