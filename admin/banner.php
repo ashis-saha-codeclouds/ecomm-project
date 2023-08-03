@@ -64,6 +64,7 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Banner Name</th>
+                                                    <th>Banner Image</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -71,14 +72,9 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
+                                                    <td>1</td>
                                                     <td>Mark</td>
                                                     <td>Active</td>
-                                                    <td><i class="fa fa-remove"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Tark</td>
-                                                    <td>In Active</td>
                                                     <td><i class="fa fa-remove"></i></td>
                                                 </tr>
                                                 

@@ -35,10 +35,10 @@ class Banner extends BuildQuery{
             if(!in_array($file_ext,$allowed_ext)){
                 $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
             }
-            list($width, $height) = getimagesize($file_temp);
-            if($width < "900" || $height < "900") {
-                $errors[]="Sorry! Please upload a image of size 1000*70";
-            }
+            // list($width, $height) = getimagesize($file_temp);
+            // if($width < "900" || $height < "900") {
+            //     $errors[]="Sorry! Please upload a image of size 900*900";
+            // }
             if($file_size>2097152){
                 $errors[]="Sorry! Please upload a file less than 2 MB";
             }
@@ -51,7 +51,6 @@ class Banner extends BuildQuery{
         if(!empty($errors)){
             //echo json_encode($errors);
             return json_encode(array("error" => "false","errorMsg"=>$errors[0]));
-            exit();
         }else{
             $banner_title=$this->_escapeTheStringData($_post['banner_title']);
             $this->_selectData('banner','banner_title',"banner_title='$banner_title'");
