@@ -66,6 +66,9 @@ class Banner extends BuildQuery{
             $this->_insertTheData("banner",$params);
             $resData=$this->_getTheResdata();
             if (array_key_exists("success",$resData) && !is_null($resData['insert_id'])) {
+                if(!empty($_files['banner_image']['name'])){
+                    move_uploaded_file($file_temp,"../../images/banner/".$file_name);
+                }
                 return json_encode(array("success" => true, "status" => 200));
             }else if(array_key_exists("error",$resData) && ($resData['insert_id']<1)) {
                 return json_encode(array("error" => "false","errorMsg"=>"Error in Data Insert!"));
@@ -74,6 +77,47 @@ class Banner extends BuildQuery{
             }
 
         }
+    }
+
+    public function __getTheBanners(){
+        $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',"is_deleted='N'");
+        $resData=$this->_getTheResdata();
+        if(!empty($resData)){
+            return json_encode($resData);
+        }else{
+            return json_encode(array("error" => false));
+        }
+    }
+
+    public function  __getTheBannerById($id){
+        $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',"is_deleted='N' AND banner_id='$id'");
+        $resData=$this->_getTheResdata();
+        if(!empty($resData)){
+            return json_encode($resData);
+        }else{
+            return json_encode(array("error" => false));
+        }
+    }
+
+    public function __delTheBanner($payload){
+        // echo "<pre>";
+        // print_r($payload);
+        // die();
+        $bannerid=$this->_escapeTheStringData($payload['bannerid']);
+        $this->_deleteTheData('banner',"banner_id='$bannerid'");
+        $resData=$this->_getTheResdata();
+        if(array_key_exists("success",$resData) && !is_null($resData['affectedrows'])){
+            return json_encode(array("success" => true, "status" => 200));
+        }else{
+            return json_encode(array("error" => 'false'));
+        }
+    }
+
+    public function __updateTheBanner($_post,$_files){
+        echo "<pre>";
+        print_r($_post);
+        print_r($_files);
+        echo "</pre>";
     }
 }
 ?>

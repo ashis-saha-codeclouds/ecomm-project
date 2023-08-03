@@ -44,7 +44,8 @@ $("#siteBanner").validate({
 
 $("#editTheBanner").validate({
   rules:{
-    banner_name:"required"
+    banner_title:"required",
+    banner_status:"required"
   },
   submitHandler: function(form){
     let formData=new FormData(form);
@@ -64,7 +65,7 @@ $("#editTheBanner").validate({
                 hideTheAlertMsg();
                 setTimeout(function(){
                   window.location.href = 'banner.php';
-                },1000);
+                },2000);
               }else if(_resData.hasOwnProperty('error')){
                 $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
                 hideTheAlertMsg();

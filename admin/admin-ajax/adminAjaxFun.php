@@ -296,4 +296,33 @@ if (isset($_POST['siteSettings'])) {
         }
     }
 
+    if(isset($_POST['banner_del'])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        if(!isset($_POST['bannerid']) || empty($_POST['bannerid'])){
+            echo json_encode(array('error'=>'banner id id is missing!'));
+            exit();
+        }else{
+            $bannerDb = new Banner();
+            $res=$bannerDb->__delTheBanner($_POST);
+            echo $res;
+        }
+
+    }
+
+    if(isset($_POST["bannerEdit"])){
+        if(!isset($_POST['banner_title']) || empty($_POST['banner_title'])){
+            echo json_encode(array('error'=>'Banner Title Field is Empty.')); 
+            exit;
+        }elseif(!isset($_POST['banner_status']) || empty($_POST['banner_status'])){
+            echo json_encode(array('error'=>'Banner Status Field is Empty.')); 
+            exit;
+        }else{
+            $bannerDb = new Banner();
+            $res=$bannerDb->__updateTheBanner($_POST,$_FILES);
+            echo $res;
+        }
+    }
+
 ?>
