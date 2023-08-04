@@ -1,6 +1,12 @@
 <?php 
 require_once("build_query.php");
 class Category extends BuildQuery{
+
+    /**
+     * __createProductCategory function to create a new category
+     * @param $payload=array()
+     * Return an JSON array of data of the result set
+     */
     public function __createProductCategory($payload){
         $cat_name=$this->_escapeTheStringData($payload['cat_name']);
         $this->_selectData('categories','cat_title',"cat_title='$cat_name'");
@@ -18,8 +24,13 @@ class Category extends BuildQuery{
                 return json_encode(array("error" => 'false'));
             }
         }
-
     }
+
+    /**
+     * __updateProductCategory function to update the category
+     * @param $payload=array()
+     * Return an JSON array of data of the result set
+     */
 
     public function __updateProductCategory($payload){
         $cat_name=$this->_escapeTheStringData($payload['cat_name']);
@@ -41,6 +52,11 @@ class Category extends BuildQuery{
         //}
     }
 
+     /**
+     * __getAllTheProductCategory function to get all the category
+     * Return an JSON array of data of the result set
+     */
+
     public function  __getAllTheProductCategory(){
         $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N'");
         $resData=$this->_getTheResdata();
@@ -51,6 +67,12 @@ class Category extends BuildQuery{
         }
     }
 
+     /**
+     * __getTheCategoryById function to get the category by ID
+     * @param $id=cayegory id
+     * Return an JSON array of data of the result set
+     */
+
     public function  __getTheCategoryById($id){
         $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N' AND cat_id='$id'");
         $resData=$this->_getTheResdata();
@@ -60,6 +82,12 @@ class Category extends BuildQuery{
             return json_encode(array("error" => false));
         }
     }
+
+    /**
+     * __delTheCategory function to delete the category
+     * @param $payload=array()
+     * Return an JSON array of data of the result set
+     */
 
     public function __delTheCategory($payload){
         $catid=$this->_escapeTheStringData($payload['catid']);

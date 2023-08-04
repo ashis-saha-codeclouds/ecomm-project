@@ -1,6 +1,12 @@
 <?php 
 require_once("build_query.php");
 class Admin extends BuildQuery{
+
+    /**
+     * __adminLogin function to authenticate the admin login
+     * @param $payload=array()
+     * Return an associative array of data of the result set
+     */
     public function __adminLogin($payload){
         $username = $this->_escapeTheStringData($payload['_username']);
         $password = md5($this->_escapeTheStringData($payload['_password']));
@@ -16,7 +22,11 @@ class Admin extends BuildQuery{
         }
    
     }
-
+    /**
+     * __updateTheAdminPassword function to update the admin password
+     * @param $payload=array()
+     * Return an associative array of data of the result set
+     */
     public function __updateTheAdminPassword($payload){
         $oldpassword = md5($this->_escapeTheStringData($payload['oldPassword']));
         $newpassword = md5($this->_escapeTheStringData($payload['newPassword']));
@@ -36,7 +46,11 @@ class Admin extends BuildQuery{
             return json_encode(array("error" => 'false'));
         }
     }
-
+    /**
+     * __updateTheAdminProfile function to update the admin password
+     * @param $payload=array()
+     * Return an associative array of data of the result set
+     */
     public function __updateTheAdminProfile($payload){
         $name=$this->_escapeTheStringData($payload['name']);
         $email=$this->_escapeTheStringData($payload['email']);
@@ -60,7 +74,12 @@ class Admin extends BuildQuery{
             return json_encode(array("error" => 'false'));
         }
     }
-
+    /**
+     * __updateTheSiteSettings function to update the admin password
+     * @param $_post=array() of $_POST Data
+     * @param $_files=array() of $_FILES
+     * Return an associative array of data of the result set
+     */
     public function __updateTheSiteSettings($_post,$_files){
         if(!empty($_post['site_logo_current']) && empty($_files['site_logo']['name'])){
             $file_name=$_post['site_logo_current'];
@@ -133,7 +152,10 @@ class Admin extends BuildQuery{
             }
         }
     }
-
+    /**
+     * __getTheSiteSettings function to get/fetch the site settings
+     * Return an associative array of data of the result set
+     */
     public function __getTheSiteSettings(){
        $this->_selectData("options","*",null);
        $resData=$this->_getTheResdata();

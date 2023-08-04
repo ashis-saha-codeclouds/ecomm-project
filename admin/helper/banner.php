@@ -1,6 +1,13 @@
 <?php
 require_once("build_query.php");
 class Banner extends BuildQuery{
+
+     /**
+     * __createTheBanner function to create a new banner
+     * @param $_post=array() of $_POST Data
+     * @param $_files=array() of $_FILES
+     * Return an associative array of data of the result set
+     */
     public function __createTheBanner($_post,$_files){
         if(!empty($_post['banner_image_current']) && empty($_files['banner_image']['name'])){
             $file_name=$_post['banner_image_current'];
@@ -79,6 +86,11 @@ class Banner extends BuildQuery{
         }
     }
 
+    /**
+     * __getTheBanners to fetch all the banners
+     * Return an associative array of data of the result set
+     */
+    
     public function __getTheBanners(){
         $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',"is_deleted='N'");
         $resData=$this->_getTheResdata();
@@ -89,6 +101,11 @@ class Banner extends BuildQuery{
         }
     }
 
+     /**
+     * __getTheBannerById function to get the existing banner by banner ID
+     * @param $id=banner id
+     * Return an associative array of data of the result set
+     */
     public function  __getTheBannerById($id){
         $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',"is_deleted='N' AND banner_id='$id'");
         $resData=$this->_getTheResdata();
@@ -99,6 +116,11 @@ class Banner extends BuildQuery{
         }
     }
 
+    /**
+     * __delTheBanner function to delete the existing banner
+     * @param $payload=array() of $_POST Data
+     * Return an associative array of data of the result set
+     */
     public function __delTheBanner($payload){
         // echo "<pre>";
         // print_r($payload);
@@ -113,6 +135,12 @@ class Banner extends BuildQuery{
         }
     }
 
+    /**
+     * __updateTheBanner function to update the existing banner
+     * @param $_post=array() of $_POST Data
+     * @param $_files=array() of $_FILES
+     * Return an associative array of data of the result set
+     */
     public function __updateTheBanner($_post,$_files){
         // echo "<pre>";
         // print_r($_post);
