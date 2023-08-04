@@ -36,7 +36,7 @@ if(isset($_REQUEST['banner_id']) && !empty($_REQUEST['banner_id'])){
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Add New Banner</h1>
+                            <h1 class="page-header">Edit New Banner</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -44,7 +44,7 @@ if(isset($_REQUEST['banner_id']) && !empty($_REQUEST['banner_id'])){
                         <div class="col-lg-6">
                             <div class="panel panel-default">
                                     <div class="panel-heading">
-                                    Add New Banner
+                                    Edit New Banner
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
@@ -56,21 +56,21 @@ if(isset($_REQUEST['banner_id']) && !empty($_REQUEST['banner_id'])){
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Upload Banner Image</label>
-                                                        <input class="form-control" name="banner_image" id="banner_image" type="file" required>
-                                                        <input class="form-control" name="site_logo_current" id="site_logo_current" value="<?php echo $bannerData['banner_image']; ?>" type="hidden">
+                                                        <input class="form-control" name="banner_image" id="banner_image" type="file">
+                                                        <input class="form-control" name="banner_image_current" id="banner_image_current" value="<?php echo $bannerData['banner_image']; ?>" type="hidden">
                                                         <div style="margin: 2px;"><img id="image" src="../images/banner/<?php echo $bannerData['banner_image']; ?>" alt="" width="80px" height="80px"/></div>   
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Status *</label>
                                                         <select class="form-control" name="banner_status" id="banner_status" required>
                                                             <option value="1" <?php if($bannerData['banner_status']=="1") echo 'selected="selected"';?>>Publish</option>
-                                                            <option value="0" <?php if($bannerData['banner_status']=="0") echo 'selected="selected"';?>>In Active</option>
+                                                            <option value="2" <?php if($bannerData['banner_status']=="2") echo 'selected="selected"';?>>In Active</option>
                                                         </select>
                                                     </div>
                                                     <?php if(!empty($_REQUEST['banner_id']) && ($_REQUEST['action']=='edit')){ ?>
                                                     <input type="hidden" name="banrid" value="<?php echo $bannerData['banner_id']; ?>"/>
                                                      <?php } ?>
-                                                    <button type="submit" class="btn btn-primary"> Submit </button>
+                                                    <button type="submit" class="btn btn-primary"> Update </button>
                                                 </form>
                                             </div>
                                         </div>
