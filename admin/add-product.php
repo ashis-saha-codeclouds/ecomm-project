@@ -63,7 +63,7 @@
                                                     <select class="form-control" name="product_status" id="product_status" required>
                                                         <option value="1">Publish</option>
                                                         <option value="2">Draft</option>
-                                                        <option value="2">In Active</option>
+                                                        <option value="3">In Active</option>
                                                     </select>
                                                 </div>      
                                     </div>

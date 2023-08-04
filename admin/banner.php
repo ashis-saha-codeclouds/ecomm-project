@@ -53,7 +53,7 @@ $bannerRes=json_decode($bannerres,true);
                                                     <label>Status *</label>
                                                     <select class="form-control" name="banner_status" id="banner_status" required>
                                                         <option value="1">Publish</option>
-                                                        <option value="0">In Active</option>
+                                                        <option value="2">In Active</option>
                                                     </select>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary"> Submit </button>
@@ -101,7 +101,7 @@ $bannerRes=json_decode($bannerres,true);
                                             </tbody>
                                         </table>
                                         <?php } else{ ?>
-                                            <div> No Category Found!</div>
+                                            <div> No Banners Found!</div>
                                             <?php } ?>
                                     </div>
                                     <!-- /.table-responsive -->

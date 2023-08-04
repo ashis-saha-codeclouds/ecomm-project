@@ -29,7 +29,7 @@ $("#siteBanner").validate({
                   hideTheAlertMsg();
                   setTimeout(function(){
                     window.location.reload();
-                  },3000);
+                  },1000);
                 }else if(_resData.hasOwnProperty('error')){
                   $('#msgrow').prepend('<div class="alert alert-danger">'+_resData.errorMsg+'</div>');
                   hideTheAlertMsg();
