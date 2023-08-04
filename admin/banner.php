@@ -85,7 +85,7 @@ $bannerRes=json_decode($bannerres,true);
                                             </thead>
                                             <tbody>
                                             <?php foreach($bannerRes as $resRow) {
-                                                    $bannerStatus=($resRow['banner_status'])?'Active':'In Active';
+                                                    $bannerStatus=($resRow['banner_status']==1)?'Active':'In Active';
                                                     ?>
                                                 <tr>
                                                         <td>#<?php echo $resRow['banner_id'] ?></td>
