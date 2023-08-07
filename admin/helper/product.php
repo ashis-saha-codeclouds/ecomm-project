@@ -7,7 +7,7 @@ class Product extends BuildQuery{
      * Return an JSON array of data of the result set
      */
     public function __getTheProductCategory(){
-        $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N' AND cat_status=1");
+        $this->_selectData('categories','cat_id,cat_title,cat_status',null,"is_deleted='N' AND cat_status=1","cat_id DESC",null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
@@ -75,7 +75,7 @@ class Product extends BuildQuery{
         }else{
             $product_title=$this->_escapeTheStringData($_post['product_title']);
             $product_sku=$this->_escapeTheStringData($_post['product_sku']);
-            $this->_selectData('products','product_title,product_sku',"product_title='$product_title' OR product_sku='$product_sku'");
+            $this->_selectData('products','product_title,product_sku',null,"product_title='$product_title' OR product_sku='$product_sku'",null,null);
             $resChekData=$this->_getTheResdata();
             if(!empty($resChekData)){
                 return json_encode(array("error" => "false",'errorMsg'=>'Product with the same title OR SKU is already exists! Please try to create the product with a different title/SKU'));
@@ -166,7 +166,7 @@ class Product extends BuildQuery{
             $product_id=$this->_escapeTheStringData($_post['prdctid']);
             // $product_title=$this->_escapeTheStringData($_post['product_title']);
             // $product_sku=$this->_escapeTheStringData($_post['product_sku']);
-            // $this->_selectData('products','product_title,product_sku',"product_title='$product_title' AND product_sku='$product_sku'");
+            // $this->_selectData('products','product_title,product_sku',null,"product_title='$product_title' AND product_sku='$product_sku'",null,null);
             // $resChekData=$this->_getTheResdata();
             // if(!empty($resChekData)){
             //     return json_encode(array("error" => "false",'errorMsg'=>'Product with the same title or SKU is already exists! Please try to create the product with a different title'));
@@ -205,7 +205,7 @@ class Product extends BuildQuery{
     public function __getTheProductById($id){
         // echo "PID".$id;
         // //die();
-        $this->_selectData('products','product_id,product_title,product_sku,product_price,product_description,category_id,product_status,product_image,is_featured',"is_deleted='N' AND product_id='$id'");
+        $this->_selectData('products','product_id,product_title,product_sku,product_price,product_description,category_id,product_status,product_image,is_featured',null,"is_deleted='N' AND product_id='$id'",null,null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
@@ -220,7 +220,7 @@ class Product extends BuildQuery{
      */
     
      public function __getAllTheProducts(){
-        $this->_selectData('products','product_id,product_title,product_sku,product_price,product_description,category_id,product_status,product_image,is_featured',"is_deleted='N'");
+        $this->_selectData('products','product_id,product_title,product_sku,product_price,product_description,category_id,product_status,product_image,is_featured',null,"is_deleted='N'","product_id DESC",null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);

@@ -22,7 +22,7 @@ class BuildQuery extends Database implements QueryBuildInterface
      * @param $wherecond= Where clause, Default is NULL
      * Return an associative array of data of the result set
      */
-    public function _selectData($table, $columns = "*", $whereClause = null)
+    public function _selectData($table, $columns = "*", $join=null, $whereClause = null, $orderBy=null, $limit=null)
     {
         /**
          * Check to see if the table exists
@@ -33,9 +33,18 @@ class BuildQuery extends Database implements QueryBuildInterface
             $sql = "SELECT $columns FROM $table";
             //die($sql);
            // $sql .= " FROM $table";
-            if (!empty($whereClause)) {
-                $sql .= " WHERE $whereClause ";
+           if($join != null){
+            $sql .= " JOIN $join ";
+           }
+           if (!empty($whereClause)) {
+            $sql .= " WHERE $whereClause ";
             }
+           if($orderBy != null){
+            $sql .= " ORDER BY $orderBy ";
+           }
+           if($limit != null){
+            $sql .= " LIMIT $limit ";
+           }
             //die($sql);
             //$sql2="SELECT username,password FROM admin WHERE username = 'admin' AND password = '21232f297a57a5a743894a0e4a801fc3'";
 
