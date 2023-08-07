@@ -34,7 +34,7 @@ class BuildQuery extends Database implements QueryBuildInterface
             //die($sql);
            // $sql .= " FROM $table";
            if($join != null){
-            $sql .= " JOIN $join ";
+            $sql .= " $join ";
            }
            if (!empty($whereClause)) {
             $sql .= " WHERE $whereClause ";

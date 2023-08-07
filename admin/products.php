@@ -4,9 +4,9 @@ require_once("helper/product.php");
 $resObj=new Product();
 $products=$resObj->__getAllTheProducts();
 $products=json_decode($products,true);
-// echo $bannerRes['error'];
+//echo $bannerRes['error'];
 // echo '<pre>';
-// print_r($productRes);
+// print_r($products);
 // die();
 
 ?>
@@ -68,7 +68,7 @@ $products=json_decode($products,true);
                                                     <td><?php echo $product['product_id']?></td>
                                                     <td><?php echo $product['product_title']?></td>
                                                     <td><?php echo $product['product_sku']?></td>
-                                                    <td class="center"><?php echo $product['product_id']?></td>
+                                                    <td class="center"><?php echo $product['cat_title']?></td>
                                                     <td class="center"><?php echo $product['product_price']?></td>
                                                     <td class="center"><img id="image" src="../images/product/<?php echo $product['product_image']; ?>" alt="" width="80px" height="80px"/></td>
                                                     <td><?php echo $isFeaturedProduct ?></td>

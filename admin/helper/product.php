@@ -220,7 +220,7 @@ class Product extends BuildQuery{
      */
     
      public function __getAllTheProducts(){
-        $this->_selectData('products','product_id,product_title,product_sku,product_price,product_description,category_id,product_status,product_image,is_featured',null,"is_deleted='N'","product_id DESC",null);
+        $this->_selectData('products','products.product_id,products.product_title,products.product_sku,products.product_price,products.product_description,products.product_status,products.product_image,products.is_featured,categories.cat_title'," JOIN categories ON products.category_id=categories.cat_id","products.is_deleted='N'","products.product_id DESC",null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
