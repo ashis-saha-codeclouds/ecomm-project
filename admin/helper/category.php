@@ -9,7 +9,7 @@ class Category extends BuildQuery{
      */
     public function __createProductCategory($payload){
         $cat_name=$this->_escapeTheStringData($payload['cat_name']);
-        $this->_selectData('categories','cat_title',"cat_title='$cat_name'");
+        $this->_selectData('categories','cat_title',null,"cat_title='$cat_name'",null,null);
         $resChekData=$this->_getTheResdata();
         if(!empty($resChekData)){
             return json_encode(array("error" => "false",'errorMsg'=>'Product Category is already exists!'));
@@ -35,7 +35,7 @@ class Category extends BuildQuery{
     public function __updateProductCategory($payload){
         $cat_name=$this->_escapeTheStringData($payload['cat_name']);
         $catid=$this->_escapeTheStringData($payload['ctid']);
-        // $this->_selectData('categories','cat_title',"cat_title='$cat_name'");
+        // $this->_selectData('categories','cat_title',null,"cat_title='$cat_name'",null,null);
         // $resChekData=$this->_getTheResdata();
         // if(!empty($resChekData)){
         //     return json_encode(array("error" => "false",'errorMsg'=>'Product Category is already exists!'));
@@ -58,7 +58,7 @@ class Category extends BuildQuery{
      */
 
     public function  __getAllTheProductCategory(){
-        $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N'");
+        $this->_selectData('categories','cat_id,cat_title,cat_status',null,"is_deleted='N'",null,null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
@@ -74,7 +74,7 @@ class Category extends BuildQuery{
      */
 
     public function  __getTheCategoryById($id){
-        $this->_selectData('categories','cat_id,cat_title,cat_status',"is_deleted='N' AND cat_id='$id'");
+        $this->_selectData('categories','cat_id,cat_title,cat_status',null,"is_deleted='N' AND cat_id='$id'",null,null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
