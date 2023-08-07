@@ -60,7 +60,7 @@ class Banner extends BuildQuery{
             return json_encode(array("error" => "false","errorMsg"=>$errors[0]));
         }else{
             $banner_title=$this->_escapeTheStringData($_post['banner_title']);
-            $this->_selectData('banner','banner_title',"banner_title='$banner_title'");
+            $this->_selectData('banner','banner_title',null,"banner_title='$banner_title'",null,null);
             $resChekData=$this->_getTheResdata();
             if(!empty($resChekData)){
                 return json_encode(array("error" => "false",'errorMsg'=>'Banner with the same title is already exists! Please try to create the banner with a different title'));
@@ -92,7 +92,7 @@ class Banner extends BuildQuery{
      */
     
     public function __getTheBanners(){
-        $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',"is_deleted='N'");
+        $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',null,"is_deleted='N'",null,null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
@@ -107,7 +107,7 @@ class Banner extends BuildQuery{
      * Return an JSON array of data of the result set
      */
     public function  __getTheBannerById($id){
-        $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',"is_deleted='N' AND banner_id='$id'");
+        $this->_selectData('banner','banner_id,banner_title,banner_status,banner_image',null,"is_deleted='N' AND banner_id='$id'",null,null);
         $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
