@@ -2,9 +2,13 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 //include('../helper/build_query.php');
-include('../helper/admin.php');
-include('../helper/category.php');
-include('../helper/banner.php');
+// include('../helper/admin.php');
+// include('../helper/category.php');
+// include('../helper/banner.php');
+spl_autoload_register(function ($class_name) {
+    include_once "../helper/".$class_name . '.php';
+});
+
 // $db = new Database();
 // $db->_selectData("admin","");
 // $result=$db->_getTheResdata();
@@ -321,6 +325,95 @@ if (isset($_POST['siteSettings'])) {
         }else{
             $bannerDb = new Banner();
             $res=$bannerDb->__updateTheBanner($_POST,$_FILES);
+            echo $res;
+        }
+    }
+
+    if(isset($_POST["productAdd"])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // print_r($_FILES);
+        // echo "</pre>";
+        // die();
+        if(!isset($_POST['product_title']) || empty($_POST['product_title'])){
+            echo json_encode(array('error'=>'Product Title is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_sku']) || empty($_POST['product_sku'])){
+            echo json_encode(array('error'=>'Product SKU is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_price']) || empty($_POST['product_price'])){
+            echo json_encode(array('error'=>'Product Price is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_desc']) || empty($_POST['product_desc'])){
+            echo json_encode(array('error'=>'Product Description is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_cat']) || empty($_POST['product_cat'])){
+            echo json_encode(array('error'=>'Product Category is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['featured_product']) || empty($_POST['featured_product'])){
+            echo json_encode(array('error'=>'Product Featured is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_status']) || empty($_POST['product_status'])){
+            echo json_encode(array('error'=>'Product Status is Empty.')); 
+            exit();
+        }else{
+            $productDb = new Product();
+            $res=$productDb->__createTheProduct($_POST,$_FILES);
+            echo $res; 
+        }
+        
+    }
+
+    if(isset($_POST["productEdit"])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // print_r($_FILES);
+        // echo "</pre>";
+        // die();
+        if(!isset($_POST['prdctid']) || empty($_POST['prdctid'])){
+            echo json_encode(array('error'=>'Product ID is Not found.')); 
+            exit();
+        }elseif(!isset($_POST['product_title']) || empty($_POST['product_title'])){
+            echo json_encode(array('error'=>'Product Title is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_sku']) || empty($_POST['product_sku'])){
+            echo json_encode(array('error'=>'Product SKU is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_price']) || empty($_POST['product_price'])){
+            echo json_encode(array('error'=>'Product Price is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_desc']) || empty($_POST['product_desc'])){
+            echo json_encode(array('error'=>'Product Description is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_cat']) || empty($_POST['product_cat'])){
+            echo json_encode(array('error'=>'Product Category is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['featured_product']) || empty($_POST['featured_product'])){
+            echo json_encode(array('error'=>'Product Featured is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['product_status']) || empty($_POST['product_status'])){
+            echo json_encode(array('error'=>'Product Status is Empty.')); 
+            exit();
+        }else{
+            $productDb = new Product();
+            $res=$productDb->__updateTheProduct($_POST,$_FILES);
+            echo $res; 
+        }
+    }
+
+    if(isset($_POST["product_del"])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // print_r($_FILES);
+        // echo "</pre>";
+        // die();
+
+        if(!isset($_POST['productid']) || empty($_POST['productid'])){
+            echo json_encode(array('error'=>'product id id is missing!'));
+            exit();
+        }else{
+            $productDb = new Product();
+            $res=$productDb->__delTheProduct($_POST);
             echo $res;
         }
     }

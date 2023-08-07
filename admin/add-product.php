@@ -1,4 +1,14 @@
 <?php include "header.php"; ?>
+<?php
+require_once("helper/product.php");
+$prodObj= new Product();
+$prodCat=$prodObj->__getTheProductCategory();
+$prodCat=json_decode($prodCat,true);
+//echo "<pre>";
+//print_r($prodCat);
+//echo $prodCat[1]['cat_id'];
+//die();
+?>
 <body>
         <div id="wrapper">
             <!-- Start of the Navigation -->
@@ -25,11 +35,11 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                    <form role="form" id="product" method="post" enctype="multipart/form-data">
+                                    <form role="form" id="product" method="post" enctype="multipart/form-data" action="">
                                     <div class="col-lg-8">
                                             <div class="form-group">
                                                     <label>Product Name*</label>
-                                                    <input class="form-control" name="product_name" id="product_name" value="" type="text" required>
+                                                    <input class="form-control" name="product_title" id="product_title" value="" type="text" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Product SKU*</label>
@@ -41,15 +51,24 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Product Description*</label>
-                                                    <textarea class="form-control" name="product_desc" rows="8  " tabindex="1" spellcheck="false" id="product_desc" required></textarea>
+                                                    <textarea class="form-control" name="product_desc" id="product_desc" rows="8" tabindex="1" spellcheck="false" required></textarea>
                                                 </div>  
                                     </div>
                                     <div class="col-lg-4">
                                     <div class="form-group">
-                                                    <label>Product Image</label>
-                                                    <input class="form-control" name="site_logo" id="site_logo" type="file">
-                                                    <input class="form-control" name="site_logo_current" id="site_logo_current" value="<?php echo $site_logo; ?>" type="hidden">
-                                                    <div style="margin: 2px;"></div>
+                                                    <label>Product Category*</label>
+                                                    <select class="form-control" name="product_cat" id="product_cat" required>
+                                                        <option value="">Select Category</option>
+                                                        <?php foreach($prodCat as $prodCategory ) {?>
+                                                        <option value="<?php echo $prodCategory['cat_id'] ?>"><?php echo $prodCategory['cat_title'] ?></option>    
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Upload Banner Image</label>
+                                                    <input class="form-control" name="product_image" id="product_image" type="file" required>
+                                                    <!-- <input class="form-control" name="banner_image_current" id="banner_image_current" value="" type="hidden"> -->
+                                                    <div style="margin: 2px;"></div>    
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Is Featured Product*</label>

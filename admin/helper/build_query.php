@@ -31,6 +31,7 @@ class BuildQuery extends Database implements QueryBuildInterface
             //$sql="select * from $table";
 
             $sql = "SELECT $columns FROM $table";
+            //die($sql);
            // $sql .= " FROM $table";
             if (!empty($whereClause)) {
                 $sql .= " WHERE $whereClause ";

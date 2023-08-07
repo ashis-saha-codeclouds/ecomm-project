@@ -1,4 +1,16 @@
-<?php include "header.php"; ?>
+<?php include "header.php"; 
+
+require_once("helper/product.php"); 
+$resObj=new Product();
+$products=$resObj->__getAllTheProducts();
+$products=json_decode($products,true);
+// echo $bannerRes['error'];
+// echo '<pre>';
+// print_r($productRes);
+// die();
+
+?>
+
 <body>
         <div id="wrapper">
             <!-- Start of the Navigation -->
@@ -25,110 +37,53 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
+                                        <?php if(count($products)>0 && $products['error']!==false){ ?>
                                         <table class="table table-striped table-bordered table-hover" id="all-product-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Product Name</th>
-                                                    <th>Product</th>
-                                                    <th>Produc</th>
-                                                    <th>Product</th>
-                                                    <th>Product</th>
+                                                    <th>Product ID</th>
+                                                    <th>Product Title</th>
+                                                    <th>Produc SKU</th>
+                                                    <th>Product Category</th>
+                                                    <th>Product Price</th>
+                                                    <th>Product Image</th>
+                                                    <th>Is Featured Product?</th>
+                                                    <th>Product Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php foreach($products as $product ) {
+                                                    if($product['product_status']==1){
+                                                        $productStatus='Publish';
+                                                    }elseif($product['product_status']==2){
+                                                        $productStatus='Draft';
+                                                    }else{
+                                                        $productStatus='In Active';
+                                                    }
+                                                    
+                                                    $isFeaturedProduct=($product['is_featured']==1)?'Yes':'No';
+                                                    ?>
                                                 <tr class="odd gradeX">
-                                                    <td>Trident</td>
-                                                    <td>Internet Explorer 4.0</td>
-                                                    <td>Win 95+</td>
-                                                    <td class="center">4</td>
-                                                    <td class="center">X</td>
+                                                    <td><?php echo $product['product_id']?></td>
+                                                    <td><?php echo $product['product_title']?></td>
+                                                    <td><?php echo $product['product_sku']?></td>
+                                                    <td class="center"><?php echo $product['product_id']?></td>
+                                                    <td class="center"><?php echo $product['product_price']?></td>
+                                                    <td class="center"><img id="image" src="../images/product/<?php echo $product['product_image']; ?>" alt="" width="80px" height="80px"/></td>
+                                                    <td><?php echo $isFeaturedProduct ?></td>
+                                                    <td class="center"><?php echo $productStatus ?></td>
+                                                    <td>
+                                                            <a class="product" href="edit-product.php?product_id=<?php echo $product['product_id']?>&action=edit"><i class="fa fa-edit"></i></a>
+                                                            <a class="del_product" href="javascript:void(0)" data-id="<?php echo $product['product_id']?>"><i class="fa fa-trash"></i></a>
+                                                        </td>
                                                 </tr>
-                                                <tr class="even gradeC">
-                                                    <td>Trident</td>
-                                                    <td>Internet Explorer 5.0</td>
-                                                    <td>Win 95+</td>
-                                                    <td class="center">5</td>
-                                                    <td class="center">C</td>
-                                                </tr>
-                                                <tr class="odd gradeA">
-                                                    <td>Trident</td>
-                                                    <td>Internet Explorer 5.5</td>
-                                                    <td>Win 95+</td>
-                                                    <td class="center">5.5</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="even gradeA">
-                                                    <td>Trident</td>
-                                                    <td>Internet Explorer 6</td>
-                                                    <td>Win 98+</td>
-                                                    <td class="center">6</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="odd gradeA">
-                                                    <td>Trident</td>
-                                                    <td>Internet Explorer 7</td>
-                                                    <td>Win XP SP2+</td>
-                                                    <td class="center">7</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="even gradeA">
-                                                    <td>Trident</td>
-                                                    <td>AOL browser (AOL desktop)</td>
-                                                    <td>Win XP</td>
-                                                    <td class="center">6</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 1.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.7</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 1.5</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.8</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 2.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.8</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 1.5</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.8</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 2.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.8</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 1.5</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.8</td>
-                                                    <td class="center">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 2.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center">1.8</td>
-                                                    <td class="center">A</td>
-                                                </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
+                                        <?php } else { ?>
+                                            <div> No Products Found!</div>
+                                            <?php } ?>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
@@ -163,7 +118,7 @@
 <script src="js/jquery.validate.min.js"></script>
 
 <!-- Custom JavaScript -->
-<script src="js/custom/custom.js"></script>
+<script src="js/custom/product.js"></script>
 
 <script>
             $(document).ready(function () {
