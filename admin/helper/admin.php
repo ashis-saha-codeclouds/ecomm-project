@@ -10,7 +10,7 @@ class Admin extends BuildQuery{
     public function __adminLogin($payload){
         $username = $this->_escapeTheStringData($payload['_username']);
         $password = md5($this->_escapeTheStringData($payload['_password']));
-        $this->_selectData('admin', 'username, name, admin_id, role, email_id', "username = '$username' AND password = '$password'");
+        $this->_selectData('admin', 'username, name, admin_id, role, email_id', null, "username = '$username' AND password = '$password'",null,null);
         $resData = $this->_getTheResdata();
         if (!empty($resData)) {
             session_start();
@@ -59,7 +59,7 @@ class Admin extends BuildQuery{
         $resData = $this->_getTheResdata();
         if (array_key_exists("success",$resData) && !is_null($resData['affectedrows'])) {
                 session_start();
-                $this->_selectData('admin', 'username, name, admin_id, role, email_id', "admin_id='$admin_id'");
+                $this->_selectData('admin', 'username, name, admin_id, role, email_id', null,"admin_id='$admin_id'",null,null);
                 $resAdminData = $this->_getTheResdata();
                 if (!empty($resAdminData)) {
                     if(!session_id()){
@@ -157,7 +157,7 @@ class Admin extends BuildQuery{
      * Return an associative array of data of the result set
      */
     public function __getTheSiteSettings(){
-       $this->_selectData("options","*",null);
+       $this->_selectData("options","*",null,null,null,null);
        $resData=$this->_getTheResdata();
         if(!empty($resData)){
             return json_encode($resData);
