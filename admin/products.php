@@ -5,9 +5,9 @@ $resObj=new Product();
 $products=$resObj->__getAllTheProducts();
 $products=json_decode($products,true);
 //echo $bannerRes['error'];
-// echo '<pre>';
-// print_r($products);
-// die();
+    // echo '<pre>';
+    // print_r($products);
+    // die();
 
 ?>
 
