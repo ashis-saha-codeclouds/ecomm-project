@@ -1,7 +1,8 @@
 Installation Steps
 ================
 
-1. Download zip file and Unzip file on your local server.
+1. Download zip file from the staging branch https://github.com/ashis-saha-codeclouds/ecomm-project/tree/ecomm-proj-staging
+2. After that Unzip file on your local server.
 2. Put this file inside "c:/wamp/www/"  OR "c:/xamp/htdocs/" .
 
 Database Configuration:
@@ -10,8 +11,7 @@ Database Configuration:
 2. Create New Database named "ecomm".
 3. Import database tables in newly created database "ecomm" from downloaded folder -> database -> ecomm.sql.zip.
 4. In the "PROJECT-FOLDER/admin/helper/db-config.php" change the value of const DB_NAME = "ecomm".
-5. Open Your browser put inside URL: "http://localhost/ecomm/"
-6. To Login as admin put inside URL:"http://localhost/ecomm/admin"
+5. To Login as admin put inside URL:"http://localhost/ecomm-project/admin/"
 
 Admin login Credentials:
 ====================
