@@ -1,7 +1,7 @@
 Installation Steps
 ================
 
-1. Download zip file from the staging branch https://github.com/ashis-saha-codeclouds/ecomm-project/tree/main
+1. Download zip file from the staging branch https://github.com/ashis-saha-codeclouds/ecomm-project
 2. After that Unzip file on your local server.
 2. Put this file inside "c:/wamp/www/"  OR "c:/xamp/htdocs/" .
 
