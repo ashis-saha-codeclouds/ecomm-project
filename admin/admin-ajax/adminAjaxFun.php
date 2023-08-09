@@ -418,4 +418,57 @@ if (isset($_POST['siteSettings'])) {
         }
     }
 
+    if(isset($_POST["user_del"])){
+        // echo "<pre>";
+        // print_r($_POST);
+        // print_r($_FILES);
+        // echo "</pre>";
+        // die();
+
+        if(!isset($_POST['user_del']) || empty($_POST['user_del'])){
+            echo json_encode(array('error'=>'user id id is missing!'));
+            exit();
+        }else{
+            $userDb = new User();
+            $res=$userDb->__delTheUser($_POST);
+            echo $res;
+        }
+    }
+
+    if(isset($_POST['userEdit'])){
+        //  echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        // die();
+        if(!isset($_POST['user_fname']) || empty($_POST['user_fname'])){
+            echo json_encode(array('error'=>'First name is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['user_lname']) || empty($_POST['user_lname'])){
+            echo json_encode(array('error'=>'Last name is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['email']) || empty($_POST['email'])){
+            echo json_encode(array('error'=>'Email is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['mobile']) || empty($_POST['mobile'])){
+            echo json_encode(array('error'=>'Mobile is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['city']) || empty($_POST['city'])){
+            echo json_encode(array('error'=>'City is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['address']) || empty($_POST['address'])){
+            echo json_encode(array('error'=>'Address is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['user_status']) || empty($_POST['user_status'])){
+            echo json_encode(array('error'=>'Status is Empty.')); 
+            exit();
+        }elseif(!isset($_POST['userid']) || empty($_POST['userid'])){
+            echo json_encode(array('error'=>'User ID is Empty.')); 
+            exit();
+        }else{
+            $userDb = new User();
+            $res=$userDb->__updateTheUser($_POST);
+            echo $res; 
+        }
+    }
+
 ?>

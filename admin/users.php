@@ -66,7 +66,7 @@ $users=json_decode($users,true);
                                                     <td class="center"><?php echo $user['address'] . "</br>" .  $user['city'] ?></td>
                                                     <td class="center"><?php echo $userStatus ?></td>
                                                     <td>
-                                                            <a class="product" href="edit-user.php?user_id=<?php echo $user['user_id']?>&action=edit"><i class="fa fa-edit"></i></a>
+                                                            <a class="user" href="edit-user.php?user_id=<?php echo $user['user_id']?>&action=edit"><i class="fa fa-edit"></i></a>
                                                             <a class="del_user" href="javascript:void(0)" data-id="<?php echo $user['user_id']?>"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                 </tr>
@@ -74,7 +74,7 @@ $users=json_decode($users,true);
                                             </tbody>
                                         </table>
                                         <?php } else { ?>
-                                            <div> No Products Found!</div>
+                                            <div> No Users Found!</div>
                                             <?php } ?>
                                     </div>
                                     <!-- /.table-responsive -->
@@ -110,7 +110,7 @@ $users=json_decode($users,true);
 <script src="js/jquery.validate.min.js"></script>
 
 <!-- Custom JavaScript -->
-<script src="js/custom/product.js"></script>
+<script src="js/custom/user.js"></script>
 
 <script>
             $(document).ready(function () {
