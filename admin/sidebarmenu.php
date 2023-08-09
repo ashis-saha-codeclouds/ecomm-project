@@ -69,7 +69,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i>Admin Profile<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>Admin Profile<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 
                                 <li>
