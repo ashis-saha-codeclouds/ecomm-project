@@ -1,13 +1,13 @@
 <?php include "header.php"; 
 
-require_once("helper/product.php"); 
-$resObj=new Product();
-$products=$resObj->__getAllTheProducts();
-$products=json_decode($products,true);
+require_once("helper/order.php"); 
+$resObj=new Order();
+$orders=$resObj->__getAllTheOrders();
+$orders=json_decode($orders,true);
 //echo $bannerRes['error'];
-    // echo '<pre>';
-    // print_r($products);
-    // die();
+    echo '<pre>';
+    print_r($orders);
+    die();
 
 ?>
 
@@ -41,14 +41,15 @@ $products=json_decode($products,true);
                                         <table class="table table-striped table-bordered table-hover" id="all-product-table">
                                             <thead>
                                                 <tr>
-                                                    <th>Product ID</th>
-                                                    <th>Product Title</th>
-                                                    <th>Produc SKU</th>
-                                                    <th>Product Category</th>
-                                                    <th>Product Price</th>
-                                                    <th>Product Image</th>
-                                                    <th>Is Featured Product?</th>
-                                                    <th>Product Status</th>
+                                                    <th>Order ID#</th>
+                                                    <th>Order Date</th>
+                                                    <th>Produc Details</th>
+                                                    <th>Total Produc Qty</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Customer/User Details</th>
+                                                    <th>Order Status</th>
+                                                    <th>Payment Status</th>
+                                                    <th>Shippinh Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -72,6 +73,7 @@ $products=json_decode($products,true);
                                                     <td class="center"><?php echo $product['product_price']?></td>
                                                     <td class="center"><img id="image" src="../images/product/<?php echo $product['product_image']; ?>" alt="" width="80px" height="80px"/></td>
                                                     <td><?php echo $isFeaturedProduct ?></td>
+                                                    <td class="center"><?php echo $productStatus ?></td>
                                                     <td class="center"><?php echo $productStatus ?></td>
                                                     <td>
                                                             <!-- <a><i class="fa fa-eye"></i></a> -->
