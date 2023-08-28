@@ -6,7 +6,7 @@
                         <div class="menumenu__container clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5"> 
                                 <div class="logo">
-                                     <a href="index.html"><img src="" alt="Ecomm Project"></a>
+                                     <a href="index.php"><img src="" alt="Ecomm Project"></a>
                                 </div>
                             </div>
                             <div class="col-md-7 col-lg-8 col-sm-5 col-xs-3">
@@ -38,7 +38,7 @@
                                         <a href="#"><i class="icon-user icons"></i></a>
                                     </div>
                                     <div class="htc__shopping__cart">
-                                        <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>
+                                        <a class="cart__menuv" href="cart.php"><i class="icon-handbag icons"></i></a>
                                         <a href="#"><span class="htc__qua">2</span></a>
                                     </div>
                                 </div>
