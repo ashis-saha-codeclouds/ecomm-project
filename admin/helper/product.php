@@ -33,7 +33,7 @@ class Product extends BuildQuery{
             $file_name=str_replace(array(',',' '),'',$file_name);
             $file_ext=explode('.',$file_name);
             $file_ext=strtolower(end($file_ext));
-            $allowed_ext=array("jpeg","jpg","png");
+            $allowed_ext=array("jpeg","jpg","png","webp");
             if(!in_array($file_ext,$allowed_ext)){
                 $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
             }
@@ -52,7 +52,7 @@ class Product extends BuildQuery{
             $file_name=str_replace(array(',',' '),'',$file_name);
             $file_ext=explode('.',$file_name);
             $file_ext=strtolower(end($file_ext));
-            $allowed_ext=array("jpeg","jpg","png");
+            $allowed_ext=array("jpeg","jpg","png","webp");
             if(!in_array($file_ext,$allowed_ext)){
                 $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
             }
@@ -123,7 +123,7 @@ class Product extends BuildQuery{
             $file_name=str_replace(array(',',' '),'',$file_name);
             $file_ext=explode('.',$file_name);
             $file_ext=strtolower(end($file_ext));
-            $allowed_ext=array("jpeg","jpg","png");
+            $allowed_ext=array("jpeg","jpg","png","webp");
             if(!in_array($file_ext,$allowed_ext)){
                 $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
             }
@@ -142,7 +142,7 @@ class Product extends BuildQuery{
             $file_name=str_replace(array(',',' '),'',$file_name);
             $file_ext=explode('.',$file_name);
             $file_ext=strtolower(end($file_ext));
-            $allowed_ext=array("jpeg","jpg","png");
+            $allowed_ext=array("jpeg","jpg","png","webp");
             if(!in_array($file_ext,$allowed_ext)){
                 $errors[]="Sorry! Extension not allowed. Please select a JPEG or PNG image";
             }

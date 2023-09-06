@@ -13,7 +13,7 @@
                                 <nav class="main__menu__nav hidden-xs hidden-sm">
                                     <ul class="main__menu">
                                         <li class="drop"><a href="index.php">Home</a></li>
-                                        <li class="drop"><a href="products.php">Shop All</a></li>
+                                        <!-- <li class="drop"><a href="index.php">Shop All</a></li> -->
                                         <li class="drop"><a href="register.php">Register</a></li>
                                         <li class="drop"><a href="login.php">Login</a></li>
                                     </ul>
@@ -22,7 +22,7 @@
                                     <nav id="mobile_dropdown">
                                         <ul>
                                         <li class="drop"><a href="index.php">Home</a></li>
-                                        <li class="drop"><a href="products.php">Shop All</a></li>
+                                        <!-- <li class="drop"><a href="index.php">Shop All</a></li> -->
                                         <li class="drop"><a href="register.php">Register</a></li>
                                         <li class="drop"><a href="login.php">Login</a></li>
                                         </ul>

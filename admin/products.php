@@ -33,8 +33,9 @@ $products=json_decode($products,true);
                         <div class="col-lg-12">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    All Products
+                                    <span><button type="button" onclick="window.location.href='add-product.php'" class="btn btn-primary"> Add New Product </button></span>
                                 </div>
+                                
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <?php if(count($products)>0 && $products['error']!==false){ ?>
