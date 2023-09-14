@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="htc__shopping__cart">
                                         <a class="cart__menuv" href="cart.php"><i class="icon-handbag icons"></i></a>
-                                        <a href="#"><span class="htc__qua">2</span></a>
+                                        <a href="cart.php"><span class="htc__qua"><?php echo count($_SESSION['cart']); ?></span></a>
                                     </div>
                                 </div>
                             </div>

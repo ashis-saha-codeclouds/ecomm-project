@@ -215,6 +215,23 @@ class Product extends BuildQuery{
     }
 
     /**
+     * __getMultipleProductById function to get the existing product by product ID
+     * @param $ids=ProductIds
+     * Return an JSON array of data of the result set
+     */
+    public function __getMultipleProductById($ids){
+        // echo "PID".$id;
+        // //die();
+        $this->_selectData('products','product_id,product_title,product_sku,product_price,product_description,category_id,product_status,product_image,is_featured',null,"is_deleted='N' AND product_id IN ('.$ids.')",null,null);
+        $resData=$this->_getTheResdata();
+        if(!empty($resData)){
+            return json_encode($resData);
+        }else{
+            return json_encode(array("error" => false));
+        }
+    }
+
+    /**
      * __getTheBanners to fetch all the banners
      * Return an JSON array of data of the result set
      */

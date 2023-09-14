@@ -1,9 +1,29 @@
+<?php 
+	session_start();
+    //session_destroy();
+
+	//initialize cart if not set or is unset
+	if(!isset($_SESSION['cart'])){
+		$_SESSION['cart'] = array();
+	}
+
+    echo '<pre>';
+print_r($_SESSION['cart']);
+die();
+
+	//unset qunatity
+	unset($_SESSION['qty_array']);
+
+require_once("admin/helper/product.php");
+$resObj=new Product();
+$resObj->__getMultipleProductById(implode(",",$_SESSION['cart']));
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Cart || Asbab - eCommerce HTML5 Template</title>
+    <title>Product Cart || Simple - eCommerce</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -85,45 +105,7 @@
                                             <td class="product-subtotal">£165.00</td>
                                             <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/2.jpg" alt="product img" /></a></td>
-                                            <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                                <ul  class="pro__prize">
-                                                    <li class="old__prize">$82.5</li>
-                                                    <li>$75.2</li>
-                                                </ul>
-                                            </td>
-                                            <td class="product-price"><span class="amount">£50.00</span></td>
-                                            <td class="product-quantity"><input type="number" value="1" /></td>
-                                            <td class="product-subtotal">£50.00</td>
-                                            <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/3.jpg" alt="product img" /></a></td>
-                                            <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                                <ul  class="pro__prize">
-                                                    <li class="old__prize">$82.5</li>
-                                                    <li>$75.2</li>
-                                                </ul>
-                                            </td>
-                                            <td class="product-price"><span class="amount">£50.00</span></td>
-                                            <td class="product-quantity"><input type="number" value="1" /></td>
-                                            <td class="product-subtotal">£50.00</td>
-                                            <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="images/product-2/cart-img/4.jpg" alt="product img" /></a></td>
-                                            <td class="product-name"><a href="#">New Dress For Sunday</a>
-                                                <ul  class="pro__prize">
-                                                    <li class="old__prize">$82.5</li>
-                                                    <li>$75.2</li>
-                                                </ul>
-                                            </td>
-                                            <td class="product-price"><span class="amount">£50.00</span></td>
-                                            <td class="product-quantity"><input type="number" value="1" /></td>
-                                            <td class="product-subtotal">£50.00</td>
-                                            <td class="product-remove"><a href="#"><i class="icon-trash icons"></i></a></td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>

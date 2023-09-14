@@ -1,12 +1,20 @@
 <?php 
 	session_start();
+    //session_destroy();
+
 	//initialize cart if not set or is unset
 	if(!isset($_SESSION['cart'])){
 		$_SESSION['cart'] = array();
 	}
 
+//     echo '<pre>';
+// print_r($_SESSION['cart']);
+// die();
+
+
 	//unset qunatity
 	unset($_SESSION['qty_array']);
+
 require_once("admin/helper/product.php");
 $resObj=new Product();
 $products=$resObj->__getAllTheProducts();
@@ -20,7 +28,7 @@ $products=json_decode($products,true);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Product Grid || Asbab - eCommerce HTML5 Template</title>
+    <title>eCommerce || Simple - eCommerce</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -108,7 +116,7 @@ $products=json_decode($products,true);
                                                         <li>$<?php echo $product['product_price']?></li>
                                                     </ul>
                                                     <div class="fr__list__btn">
-                                                        <a class="fr__btn" href="cart.php">Add To Cart</a>
+                                                        <a class="fr__btn add-to-cart" data-prdctid="<?php echo $product['product_id'] ?>" href="javascript:void(0)">Add To Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,6 +158,7 @@ $products=json_decode($products,true);
     <script src="js/waypoints.min.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
+    <script src="js/action.js"></script>
 
 </body>
 

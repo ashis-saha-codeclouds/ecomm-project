@@ -45,7 +45,7 @@ class BuildQuery extends Database implements QueryBuildInterface
            if($limit != null){
             $sql .= " LIMIT $limit ";
            }
-            //die($sql);
+            die($sql);
             //$sql2="SELECT username,password FROM admin WHERE username = 'admin' AND password = '21232f297a57a5a743894a0e4a801fc3'";
 
             $queryRes = $this->mysqli->query($sql); 
